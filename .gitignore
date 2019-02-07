@@ -8,3 +8,5 @@
 *.gz
 
 input/
+
+b_temp/
