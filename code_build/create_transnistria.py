@@ -72,6 +72,17 @@ def create_transnistria(input_shp, output_shp):
     arcpy.CalculateField_management(tempfile1, "trans", "Reclass(!NAME_1!)", "PYTHON_9.3", "def Reclass(name):\\n    if (name == 'Transnistria'):\\n        return 1\\n    else:\\n        return 0")
     print "...dissolving Moldova proper"
     arcpy.Dissolve_management(tempfile1, output_shp, "trans")
+    print "Deleting intermediate files"
+    files_to_delete = [input_shp, tempfile1]
+    for file in files_to_delete:
+      delete_if_exists(file)
+
+
+### Define internal subfunctions
+def delete_if_exists(file):
+  if arcpy.Exists(file):
+    arcpy.Delete_management(file)
+
 
 ### Execute the main function ###
 if __name__ == "__main__":
