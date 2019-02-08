@@ -7,7 +7,10 @@
 
 *.gz
 
-input/
+input/gadm/
+input/light/
+input/unrecognized/
+input/pwt90.xlsx
 
 b_temp/
 
