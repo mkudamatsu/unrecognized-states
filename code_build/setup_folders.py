@@ -9,7 +9,7 @@ def main():
     try:
         ### Inputs and outputs ######################################
         print "Setting folder names"
-        folders_to_create = ["code_analysis", "b_temp", "b_output", "a_temp", "a_output"]
+        folders_to_create = ["../code_analysis", "../b_temp", "../b_output", "../a_temp", "../a_output"]
 
         # Process
         print "Creating folders"
