@@ -13,5 +13,8 @@ input/unrecognized/
 input/pwt90.xlsx
 
 b_temp/
+b_output/
+a_temp/
+a_output/
 
 code_build/arcgis_models/
