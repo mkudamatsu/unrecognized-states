@@ -16,5 +16,6 @@ tidy_pwt <- pwt %>%
 tidy_pwt
 
 ## create csv
-write_csv(tidy1, "/Users/elisa/Desktop/check/unrecognized_states/b_temp/country_year_rgdpe.csv")
+write_csv(tidy_pwt, "/Users/elisa/Desktop/check/unrecognized_states/b_temp/country_year_rgdpe.csv")
 # see https://www.rdocumentation.org/packages/readr/versions/0.1.1/topics/write_csv
+
