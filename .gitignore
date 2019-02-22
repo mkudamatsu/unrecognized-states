@@ -21,3 +21,9 @@ code_build/arcgis_models/
 .Rproj.user
 
 *.Rproj
+
+\.RData
+
+\.Rhistory
+
+*.xlsx
