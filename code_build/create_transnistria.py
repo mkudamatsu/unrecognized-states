@@ -66,12 +66,12 @@ def create_transnistria(input_shp, output_shp):
     print "...selecting Moldova"
     tempfile1 = "b_temp/tempfile1.shp"
     arcpy.Select_analysis(input_shp, tempfile1, '"NAME_0" = \'Moldova\'')
-    print "...creating the indicator of Transnistria 1/2"
-    arcpy.AddField_management(tempfile1, "trans", "SHORT")
-    print "...creating the indicator of Transnistria 2/2"
-    arcpy.CalculateField_management(tempfile1, "trans", "Reclass(!NAME_1!)", "PYTHON_9.3", "def Reclass(name):\\n    if (name == 'Transnistria'):\\n        return 1\\n    else:\\n        return 0")
+    print "...creating the territory indicator 1/2"
+    arcpy.AddField_management(tempfile1, "territory", "TEXT")
+    print "...creating the territory indicator 2/2"
+    arcpy.CalculateField_management(tempfile1, "territory", "Reclass(!NAME_1!)", "PYTHON_9.3", "def Reclass(name):\\n    if (name == 'Transnistria'):\\n        return \"TRA\"\\n    else:\\n        return \"MDA\"")
     print "...dissolving Moldova proper"
-    arcpy.Dissolve_management(tempfile1, output_shp, "trans")
+    arcpy.Dissolve_management(tempfile1, output_shp, "territory")
     print "Deleting intermediate files"
     files_to_delete = [input_shp, tempfile1]
     for file in files_to_delete:

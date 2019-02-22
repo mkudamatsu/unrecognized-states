@@ -77,19 +77,14 @@ def create_karabakh(in_polygon1, in_line, in_polygon0, out_shp): # Arcpy doesn't
   inFeatures = [in_polygon0, erase_shp]
   outFeatures = out_shp
   arcpy.Union_analysis (inFeatures, outFeatures, "ONLY_FID")
-  print "...Creating the Karabakh indicator"
-  create_new_field(out_shp, "karabakh", "SHORT", "!FID_temp_e!+1")  # FID_temp_e comes from Erase tool's output (erase_shp), taking the value of 0 for Karabakh and -1 for the rest
+  print "...creating the territory indicator 1/2"
+  arcpy.AddField_management(out_shp, "territory", "TEXT")
+  print "...creating the territory indicator 2/2"
+  arcpy.CalculateField_management(out_shp, "territory", "Reclass(!FID_temp_e!)", "PYTHON_9.3", "def Reclass(name):\\n    if (name == 0):\\n        return \"NKR\"\\n    else:\\n        return \"AZE\"") # FID_temp_e comes from Erase tool's output (erase_shp), taking the value of 0 for Karabakh and -1 for the rest
   print "Deleting intermediate files"
   files_to_delete = [in_polygon1, in_polygon0, select_shp, buffer_shp, erase_shp]
   for file in files_to_delete:
     delete_if_exists(file)
-
-# internal subfunctions
-def create_new_field(input_features, field_name, data_type, expression):
-  print "Creating a blank field"
-  arcpy.AddField_management(input_features, field_name, data_type)
-  print "Calculating the field"
-  arcpy.CalculateField_management(input_features, field_name, expression, "PYTHON_9.3")
 
 def delete_if_exists(file):
   if arcpy.Exists(file):

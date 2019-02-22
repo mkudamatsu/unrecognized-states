@@ -59,16 +59,12 @@ def set_wgs1984(in_shp, out_shp):
   arcpy.DefineProjection_management(out_shp, wgs1984)
 
 def create_georgia(in_polygon, out_shp):
-  print "...creating the indicator of Abkhazia 1/2"
-  arcpy.AddField_management(in_polygon, "abkhazia", "SHORT")
-  print "...creating the indicator of Abkhazia 2/2"
-  arcpy.CalculateField_management(in_polygon, "abkhazia", "Reclass(!ADM2_1_ID!)", "PYTHON_9.3", "def Reclass(name):\\n    if (name == 141):\\n        return 1\\n    else:\\n        return 0")
-  print "...creating the indicator of South Ossetia 1/2"
-  arcpy.AddField_management(in_polygon, "s_ossetia", "SHORT")
-  print "...creating the indicator of South Ossetia 2/2"
-  arcpy.CalculateField_management(in_polygon, "s_ossetia", "Reclass(!ADM2_1_ID!)", "PYTHON_9.3", "def Reclass(name):\\n    if (name == 146):\\n        return 1\\n    else:\\n        return 0")
+  print "...creating the territory indicator 1/2"
+  arcpy.AddField_management(in_polygon, "territory", "TEXT")
+  print "...creating the territory indicator 2/2"
+  arcpy.CalculateField_management(in_polygon, "territory", "Reclass(!ADM2_1_ID!)", "PYTHON_9.3", "def Reclass(name):\\n    if (name == 141):\\n        return \"ABK\"\\n    if (name == 146):\\n        return \"SOS\"\\n    else:\\n        return \"GEO\"")
   print "...dissolving Georgia proper"
-  arcpy.Dissolve_management(in_polygon, out_shp, ["abkhazia", "s_ossetia"])
+  arcpy.Dissolve_management(in_polygon, out_shp, "territory")
   print "Deleting intermediate files"
   files_to_delete = [in_polygon]
   for file in files_to_delete:
