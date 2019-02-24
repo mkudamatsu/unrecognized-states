@@ -20,6 +20,7 @@ arcpy.env.workspace = "../" # NEVER USE single backslash (\).
 
 ### Geoprocessing starts here ###
 try:
+    print "List of input polygon data being set"
     territory_names = ["georgia", "karabakh", "transnistria"]
     for territory_name in territory_names:
         print "Working on "+territory_name+""
