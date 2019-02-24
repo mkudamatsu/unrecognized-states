@@ -20,7 +20,7 @@ arcpy.env.workspace = "../" # NEVER USE single backslash (\).
 
 ### Local variables ###
 print "Inputs being set"
-gadm_shp = "input\\gadm\\orig\\gadm36_0.shp"
+gadm_shp = "input\\gadm\\gadm36_0.shp"
 ### Geoprocessing starts here ###
 try:
     print "Setting the input file name prefixes"
