@@ -45,8 +45,10 @@ try:
         else:
             version = ".v4b"
 
-        print "Intermediate files being set"
+        print "Input files being set"
         light_tif = "input\\light\\"+satellite_year+""+version+"_web.stable_lights.avg_vis.tif"
+
+        print "Intermediate files being set"
         country_light_dbf = "b_temp\\country_light_"+satellite_year+".dbf"
 
         print "Outputs being set"
