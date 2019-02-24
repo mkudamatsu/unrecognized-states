@@ -27,3 +27,7 @@ code_build/arcgis_models/
 \.Rhistory
 
 *.xlsx
+
+*.tfw
+
+*.tif
