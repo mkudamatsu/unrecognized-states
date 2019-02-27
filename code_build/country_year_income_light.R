@@ -102,7 +102,7 @@ light <- read_excel("b_temp/countryname_light.xls") %>%
 ### merge income data with light data ###
 
 # import and subset income data
-income <- read.csv("b_temp/country_year_rgdpe.csv") %>% 
+income <- read_csv("b_temp/country_year_rgdpe.csv") %>% 
   setnames(old = c("rgdpe"), new = c("income")) %>% 
   subset(year >= 1992 & year <= 2013)
 
