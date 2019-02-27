@@ -109,14 +109,8 @@ income <- read_csv("b_temp/country_year_rgdpe.csv") %>%
 # check unmatched variables by code
 unmatched_light_code <- anti_join(light, income, by = "countrycode")
 unmatched_income_code <- anti_join(income, light, by = "countrycode") # no unmatched countrycodes for income
-#View(unmatched_light_code)
-#View(unmatched_income_code)
-
-# check unmatched variables by name
-unmatched_light_name <- anti_join(light, income, by = "country")
-unmatched_income_name <- anti_join(income, light, by = "country")
-#View(unmatched_light_name)
-#View(unmatched_income_name)
+View(unmatched_light_code)
+View(unmatched_income_code)
 
 # delete name column from income data
 income_new <- select(income, -country)
