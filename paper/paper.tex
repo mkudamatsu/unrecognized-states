@@ -73,6 +73,13 @@ Many studies validate light intensity against the measures of living standards.%
 For validation against real GDP at the country level, Henderson et al.\ (2012) and Storeygard (2016, table 1) show that the elasticity of real GDP with respect to light is around 0.3 across different subsamples of countries. 
 In the estimation of elasticity, they control for country and year fixed effects, the latter of which take into account that the value of light intensity is not comparable across years.
 
+\subsection{Country boundaries}
+To aggregate nighttime light intensity at the 30 arc-second cell level into the country level, we need the spatial data on country boundaries. 
+We use GADM (2018), following Alesina et al.\ (2016) and Dreher et al.\ (2015) among others. 
+The data include 256 countries and overseas territories. 
+One country, Vatican, is dropped from the sample because it is smaller than the 30 arc-second cell. 
+In addition, 73 countries and territories are also dropped from the sample as real GDP data is unavailable.
+
 \section{Methodology}
 % Model of real GDP
 We model real GDP in territory $i$ in year $t$, denoted by $y_{it}$, as follows:
@@ -107,9 +114,12 @@ where $\hat{\beta}$ and $\hat{\eta_t}$ are the estimated $\beta$ and $\eta_t$ in
 
 
 \begin{thebibliography}{99}                                                                                                %
-\bibitem{} Cameron, A. Colin, Jonah B. Gelbach, and Douglas L. Miller. 2011. ``Robust Inference With Multiway Clustering.'' \textit{Journal of Business \& Economic Statistics}, 29(2): 238-249.	
+\bibitem{} Alesina, Alberto, Stelios Michalopoulos, and Elias Papaioannou. 2016. ``Ethnic Inequality.'' \textit{Journal of Political Economy}, 124(2): 428-488.
 \bibitem{} Bickenbach, Frank, Eckhardt Bode, Peter Nunnenkamp, and Mareike Soder. 2016. ``Night lights and regional GDP.'' \textit{Review of World Economics}, 152 (2), 425-447.                                                                                         
+\bibitem{} Cameron, A. Colin, Jonah B. Gelbach, and Douglas L. Miller. 2011. ``Robust Inference With Multiway Clustering.'' \textit{Journal of Business \& Economic Statistics}, 29(2): 238-249.
+\bibitem{} Dreher, Axel, Andreas Fuchs, Roland Hodler, Bradley C. Parks, Paul A. Raschky, and Michael J. Tierney. 2015. ``Aid on Demand: African Leaders and the Geography of China?s Foreign Assistance.'' CEPR Discussion Paper, 10170.
 \bibitem{} Feenstra, Robert C., Robert Inklaar, and Marcel P. Timmer. 2015. ``The Next Generation of the Penn World Table.'' \textit{American Economic Review}, 105(10): 3150-3182.
+\bibitem{} GADM. 2018. ``GADM Maps and Data (version 3.6).'' https://gadm.org (accessed February 7, 2019).
 \bibitem{} Goldblatt, Ran, Kilian Heilmann, and Yonatan Vaizman. 2018. ``Can Medium-Resolution Satellite Imagery Measure Economic Activity at Small Geographies? Evidence from Landsat in Vietnam.'' \textit{World Bank Economic Review}, forthcoming.
 \bibitem{} Henderson, J. Vernon, Adam Storeygard, and David N. Weil. 2012. ``Measuring Economic Growth from Outer Space.'' \textit{American Economic Review}, 102(2): 994-1028.
 \bibitem{} Hodler, Roland, and Paul A. Raschky. 2014. ``Regional Favoritism.'' \textit{Quarterly Journal of Economics}, 129(2): 995-1033.
