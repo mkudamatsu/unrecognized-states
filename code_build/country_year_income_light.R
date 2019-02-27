@@ -1,3 +1,5 @@
+### arrange environment ###
+
 # remove all objects
 rm(list = ls())
 
@@ -7,11 +9,12 @@ if (!require("pacman")) install.packages("pacman")
 # load packages
 pacman::p_load(tidyverse)
 pacman::p_load(readxl)
-pacman::p_load(data.table) #http://rprogramming.net/rename-columns-in-r/
+pacman::p_load(data.table) # http://rprogramming.net/rename-columns-in-r/
+
 
 ### create panel data for light ###
 
-# import tables
+# import light data
 l_10.92 <- read_excel("b_temp/country_light_F101992.xls", sheet = 1)
 l_10.93 <- read_excel("b_temp/country_light_F101993.xls", sheet = 1)
 l_10.94 <- read_excel("b_temp/country_light_F101994.xls", sheet = 1)
@@ -83,27 +86,45 @@ l_18.11$satellite_year <- c("F18_2011")
 l_18.12$satellite_year <- c("F18_2012")
 l_18.13$satellite_year <- c("F18_2013")
 
-# append tables
-light1 <- rbind(l_10.92, l_10.93, l_10.94, l_12.94, l_12.95, l_12.96, l_12.97, l_12.98, l_12.99, l_14.97, l_14.98, l_14.99, l_14.00, l_14.01,l_14.02, l_14.03, l_15.00, l_15.01, l_15.02, l_15.03, l_15.04, l_15.05, l_15.06, l_15.07, l_16.04, l_16.05, l_16.06, l_16.07, l_16.08, l_16.09, l_18.10, l_18.11, l_18.12, l_18.13)
-
-#reorganize table
-light2 <- light1 %>%
+# append light data
+all_light <- rbind(l_10.92, l_10.93, l_10.94, l_12.94, l_12.95, l_12.96, l_12.97, l_12.98, l_12.99, l_14.97, l_14.98, l_14.99, l_14.00, l_14.01,l_14.02, l_14.03, l_15.00, l_15.01, l_15.02, l_15.03, l_15.04, l_15.05, l_15.06, l_15.07, l_16.04, l_16.05, l_16.06, l_16.07, l_16.08, l_16.09, l_18.10, l_18.11, l_18.12, l_18.13) %>% 
   select(GID_0, MEAN, satellite_year) %>% 
   separate(satellite_year, into = c("satellite", "year"), sep = "_", convert = TRUE) %>% 
-  setnames(old=c("GID_0"), new=c("countrycode")) %>%
-  group_by(countrycode, year) %>% 
+  group_by(GID_0, year) %>%
   summarise(light = mean(MEAN))
 
-### combine light with income into one dataset ###
+# match country name with ID
+light <- read_excel("b_temp/countryname_light.xls") %>% 
+  right_join(all_light) %>% # need to get rid of Vatican City (VAT) observation
+  select(-FID) %>% 
+  setnames(old = c("GID_0", "NAME_0"), new = c("countrycode", "country"))
 
-# import table
+### merge income data with light data ###
+
+# import and subset income data
 income <- read.csv("b_temp/country_year_rgdpe.csv") %>% 
-  setnames(old=c("rgdpe"), new=c("income"))
+  setnames(old = c("rgdpe"), new = c("income")) %>% 
+  subset(year >= 1992 & year <= 2013)
 
-# merge tables
-inc_light <- light2 %>% 
-  right_join(income) %>% 
-  select("countrycode", "country", "year", "income", "light")
+# check unmatched variables by code
+unmatched_light_code <- anti_join(light, income, by = "countrycode")
+unmatched_income_code <- anti_join(income, light, by = "countrycode") # no unmatched countrycodes for income
+#View(unmatched_light_code)
+#View(unmatched_income_code)
 
-# export table
-write_csv(inc_light, "b_output/country_year_income_light.csv")
+# check unmatched variables by name
+unmatched_light_name <- anti_join(light, income, by = "country")
+unmatched_income_name <- anti_join(income, light, by = "country")
+#View(unmatched_light_name)
+#View(unmatched_income_name)
+
+# delete name column from income data
+income_new <- select(income, -country)
+
+# merge income with light
+income_light <- light %>% 
+  full_join(income_new) %>% 
+  select(countrycode, country, year, income, light)
+
+# export csv
+write_csv(income_light, "b_output/country_year_income_light.csv")
