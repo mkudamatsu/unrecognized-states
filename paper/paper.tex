@@ -84,7 +84,7 @@ In addition, 73 countries and territories are also dropped from the sample as re
 % Model of real GDP
 We model real GDP in territory $i$ in year $t$, denoted by $y_{it}$, as follows:
 \begin{equation}\label{gdp}
-y_{it} = \beta L_{it} + \mu_i + \eta_t + \varepsilon_{it},
+\ln(y_{it}) = \beta \ln(L_{it}) + \mu_i + \eta_t + \varepsilon_{it},
 \end{equation}
 where $L_{it}$ is nighttime light intensity in territory $i$ in year $t$, $\mu_i$ the territory fixed effect, $\eta_t$ the year fixed effect, and $\varepsilon_{it}$ the error term.
 
@@ -98,14 +98,14 @@ To predict $y_{it}$ for unrecognized states (and their parent countries dropped 
 We predict them with the average light intensity over the sample period of 1992-2013. 
 Specifically, with the same set of countries as the one for estimating equation (\ref{gdp}), we estimate the following equation with OLS:
 \begin{equation}\label{country_fe}
-\hat{\mu}_i = \alpha + \gamma \bar{L}_{i} + \xi_{i},
+\hat{\mu}_i = \alpha + \gamma \ln(\bar{L}_{i}) + \xi_{i},
 \end{equation}
 where $\hat{\mu}_i$ is the estimated territory fixed effect from equation (\ref{gdp}), $\bar{L}_{i}$ the average light intensity in territory $i$ over the sample period, and $\xi_i$ the error term.
 
 % Prediction of real GDP
 Consequently, GDP per capita in unrecognized state $k$ in year $t$, denoted by $\hat{y}_{kt}$, will then be predicted as follows:
 \begin{equation}
-\hat{y}_{kt} = \hat{\beta} L_{kt} + [\hat{\alpha} + \hat{\gamma} \bar{L}_{i}]  + \hat{\eta_t},
+\ln(\hat{y}_{kt}) = \hat{\beta} \ln(L_{kt}) + [\hat{\alpha} + \hat{\gamma} \ln(\bar{L}_{i})]  + \hat{\eta_t},
 \end{equation}
 where $\hat{\beta}$ and $\hat{\eta_t}$ are the estimated $\beta$ and $\eta_t$ in equation (\ref{gdp}), $\hat{\alpha}$ and $\hat{\gamma}$ the estimated $\alpha$ and $\gamma$ in equation (\ref{country_fe}).
 
