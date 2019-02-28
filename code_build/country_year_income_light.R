@@ -35,7 +35,7 @@ all_light <- fulldata2 %>%
   summarise(light = mean(MEAN))
 
 # change <chr> into <num>
-all_light$year <- as.numeric(as.character(light$year))
+all_light$year <- as.numeric(as.character(all_light$year))
 
 # match country name with ID
 light <- read_excel("b_temp/countryname_light.xls") %>% 
