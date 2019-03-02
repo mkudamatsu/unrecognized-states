@@ -72,7 +72,7 @@ reg <- felm(ln_income ~ ln_light + factor(countrycode) + factor(year) -1 | 0 | 0
 ### export point estimates and SE ###
 
 # create table of point estimates and SE for coeff on light and ydum
-output1 <- tidy(reg) %>% 
+year_fe <- tidy(reg) %>% 
   select(term, estimate, std.error) %>% 
   filter(substr(term, 1, 12) == "factor(year)") %>%  
   mutate(
@@ -81,7 +81,7 @@ output1 <- tidy(reg) %>%
   ) %>%   
   select(-term, -year)
 
-outputlight <- tidy(reg) %>% 
+light_coeff <- tidy(reg) %>% 
   select(term, estimate, std.error) %>% 
   filter(term == "ln_light") %>%  
   mutate(
@@ -90,17 +90,17 @@ outputlight <- tidy(reg) %>%
   ) %>%   
   select(-term, -light)
 
-new <- full_join(outputlight, output1) %>% 
+output1_transposed <- full_join(light_coeff, year_fe) %>% 
   setnames(old = c("estimate", "std.error"), new = c("fe_estimate", "fe_error")) %>% 
   select(name, everything())
 
 # transpose table
-transposed <- transpose(new)
-rownames(transposed) <- colnames(new)
-colnames(transposed) <- transposed[1, ] # first row becomes header
-transposed <- transposed[-1, ] # remove first row
+output1 <- transpose(output1_transposed)
+rownames(output1) <- colnames(output1_transposed)
+colnames(output1) <- output1[1, ] # first row becomes header
+output1 <- output1[-1, ] # remove first row
 
-write_csv(transposed, "a_temp/income_light_cfe_yfe_light_coeff.csv") 
+write_csv(output1, "a_temp/income_light_cfe_yfe_light_coeff.csv") 
 
 # create cross-country data with point estimates and SE for coeff on cdum
 output2 <- tidy(reg) %>% 
