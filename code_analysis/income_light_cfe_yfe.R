@@ -71,45 +71,58 @@ reg <- felm(ln_income ~ ln_light + factor(countrycode) + factor(year) -1 | 0 | 0
 
 ### export point estimates and SE ###
 
-# create table of point estimates and SE for coeff on light and ydum
-year_fe <- tidy(reg) %>% 
+# create table of point estimates and SE for ydum
+year_fe_transposed <- tidy(reg) %>% 
   select(term, estimate, std.error) %>% 
-  filter(substr(term, 1, 12) == "factor(year)") %>%  
+  filter(substr(term, 1, 12) == "factor(year)") %>%  # maybe not the best option to do it by row number
   mutate(
     year = str_sub(term, -4, -1),
     name = str_c("year_fe", year)
   ) %>%   
-  select(-term, -year)
+  select(-term, -year) %>% 
+  setnames(old = c("estimate", "std.error"), new = c("fe_estimate", "fe_error")) %>% 
+  select(name, everything())
 
-light_coeff <- tidy(reg) %>% 
+write_csv(year_fe_transposed, "a_temp/income_light_cfe_yfe_year_fe_transposed.csv") 
+
+year_fe <- transpose(year_fe_transposed)
+rownames(year_fe) <- colnames(year_fe_transposed)
+colnames(year_fe) <- year_fe[1, ] # first row becomes header
+year_fe <- year_fe[-1, ] # remove first row
+
+write_csv(year_fe, "a_temp/income_light_cfe_yfe_year_fe.csv") 
+
+# create table of point estimates and SE for coeff on light
+light_coeff_transposed <- tidy(reg) %>% 
   select(term, estimate, std.error) %>% 
-  filter(term == "ln_light") %>%  
+  filter(term == "ln_light") %>%  # maybe not the best option to do it by row number
   mutate(
     light = str_sub(term, 4, 8),
     name = str_c("coeff_", light)
   ) %>%   
-  select(-term, -light)
-
-output1_transposed <- full_join(light_coeff, year_fe) %>% 
-  setnames(old = c("estimate", "std.error"), new = c("fe_estimate", "fe_error")) %>% 
+  select(-term, -light) %>% 
   select(name, everything())
 
-# transpose table
-output1 <- transpose(output1_transposed)
-rownames(output1) <- colnames(output1_transposed)
-colnames(output1) <- output1[1, ] # first row becomes header
-output1 <- output1[-1, ] # remove first row
+light_coeff <- transpose(light_coeff_transposed) %>% 
+  as_tibble
 
-write_csv(output1, "a_temp/income_light_cfe_yfe_light_coeff.csv") 
+rownames(light_coeff) <- colnames(light_coeff_transposed)
+colnames(light_coeff) <- light_coeff[1, ] # first row becomes header
+light_coeff <- light_coeff[-1, ] # remove first row
+
+
+light_coeff %>% 
+
+write_csv(light_coeff, "a_temp/income_light_cfe_yfe_light_coeff.csv") 
 
 # create cross-country data with point estimates and SE for coeff on cdum
-output2 <- tidy(reg) %>% 
+country_coeff <- tidy(reg) %>% 
   select(term, estimate, std.error) %>% 
-  filter(substr(term, 1, 19) == "factor(countrycode)") %>%  
+  filter(substr(term, 1, 19) == "factor(countrycode)") %>%  # maybe not the best option to do it by row number
   setnames(old = c("estimate", "std.error"), new = c("fe_estimate", "fe_error")) %>% 
   mutate(countrycode = str_sub(term, -3, -1)) %>% 
   select(-term) %>% 
   select(countrycode, everything())
 
-write_csv(output2, "a_temp/income_light_cfe_yfe_country_coeff.csv") 
+write_csv(country_coeff, "a_temp/income_light_cfe_yfe_country_coeff.csv") 
 
