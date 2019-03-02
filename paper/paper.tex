@@ -91,7 +91,8 @@ where $L_{it}$ is nighttime light intensity in territory $i$ in year $t$, $\mu_i
 % Sample
 To estimate $\beta$, $\mu_i$, and $\eta_t$ in equation (\ref{gdp}) with OLS, we use the balanced panel of countries around the world from 1992 to 2013 so that we can avoid compositional bias in the estimation of territory and year fixed effects, $\mu_i$ and $\eta_t$. 
 The sample of countries excludes the parent countries of unrecognized states (i.e.\ Georgia, Azerbaijan, and Moldova) because we will validate our predicted values of real GDP against the actual real GDP in these three countries.
-Standard errors are clustered both at the territory level and at the year level with the multi-way cluster robust inference method (Cameron et al.\ 2011).
+Standard errors are clustered both at the territory level and at the year level with the multi-way cluster robust inference method (Cameron et al.\ 2011).%
+\footnote{Due to multicollinearity, we need to drop one dummy for either a country or a year when we estimate equation (\ref{gdp}). We drop the dummy for year 1992 because the country fixed effects estimates will be used to predict ``country'' fixed effects for unrecognized states and their parent countries, as described in the next paragraph.}
 
 % Model of country fixed effects
 To predict $y_{it}$ for unrecognized states (and their parent countries dropped from the sample) from equation (\ref{gdp}), we need to recover territory fixed effects, $\mu_i$. 
