@@ -34,8 +34,7 @@ gdp_pred <- input1 %>%
   full_join(yfe) %>%
   mutate(ln_gdp_hat = input3$coeff_light[1] * log(light) + country_fe + year_fe,
          gdp_hat = exp(ln_gdp_hat)) %>%
-  select(-ln_gdp_hat)%>% 
-  select(territory, year, gdp_hat, income)
+  select(territory, year, ln_gdp_hat, gdp_hat, income)
 
 # export csv
 write_csv(gdp_pred, "a_output/territory_year_gdp_hat.csv")
