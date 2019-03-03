@@ -74,7 +74,7 @@ reg <- felm(ln_income ~ ln_light + factor(countrycode) + factor(year) -1 | 0 | 0
 # create table of point estimates and SE for ydum
 year_fe_transposed <- tidy(reg) %>% 
   select(term, estimate, std.error) %>% 
-  filter(substr(term, 1, 12) == "factor(year)") %>%  # maybe not the best option to do it by row number
+  filter(substr(term, 1, 12) == "factor(year)") %>% 
   mutate(
     year = str_sub(term, -4, -1),
     name = str_c("year_fe", year)
@@ -95,7 +95,7 @@ write_csv(year_fe, "a_temp/income_light_cfe_yfe_year_fe.csv")
 # create table of point estimates and SE for coeff on light
 light_coeff_transposed <- tidy(reg) %>% 
   select(term, estimate, std.error) %>% 
-  filter(term == "ln_light") %>%  # maybe not the best option to do it by row number
+  filter(term == "ln_light") %>%  
   mutate(
     light = str_sub(term, 4, 8),
     name = str_c("coeff_", light)
@@ -118,7 +118,7 @@ write_csv(light_coeff, "a_temp/income_light_cfe_yfe_light_coeff.csv")
 # create cross-country data with point estimates and SE for coeff on cdum
 country_coeff <- tidy(reg) %>% 
   select(term, estimate, std.error) %>% 
-  filter(substr(term, 1, 19) == "factor(countrycode)") %>%  # maybe not the best option to do it by row number
+  filter(substr(term, 1, 19) == "factor(countrycode)") %>%  
   setnames(old = c("estimate", "std.error"), new = c("fe_estimate", "fe_error")) %>% 
   mutate(countrycode = str_sub(term, -3, -1)) %>% 
   select(-term) %>% 
