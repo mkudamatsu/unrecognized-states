@@ -110,9 +110,6 @@ rownames(light_coeff) <- colnames(light_coeff_transposed)
 colnames(light_coeff) <- light_coeff[1, ] # first row becomes header
 light_coeff <- light_coeff[-1, ] # remove first row
 
-
-light_coeff %>% 
-
 write_csv(light_coeff, "a_temp/income_light_cfe_yfe_light_coeff.csv") 
 
 # create cross-country data with point estimates and SE for coeff on cdum
