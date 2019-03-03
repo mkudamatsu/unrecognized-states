@@ -72,7 +72,7 @@ reg <- felm(ln_income ~ ln_light + factor(countrycode) + factor(year) -1 | 0 | 0
 ### export point estimates and SE ###
 
 # create table of point estimates and SE for ydum
-year_fe_transposed <- tidy(reg) %>% 
+year_fe <- tidy(reg) %>% 
   select(term, estimate, std.error) %>% 
   filter(substr(term, 1, 12) == "factor(year)") %>% 
   mutate(
@@ -82,13 +82,6 @@ year_fe_transposed <- tidy(reg) %>%
   select(-term, -year) %>% 
   setnames(old = c("estimate", "std.error"), new = c("fe_estimate", "fe_error")) %>% 
   select(name, everything())
-
-write_csv(year_fe_transposed, "a_temp/income_light_cfe_yfe_year_fe_transposed.csv") 
-
-year_fe <- transpose(year_fe_transposed)
-rownames(year_fe) <- colnames(year_fe_transposed)
-colnames(year_fe) <- year_fe[1, ] # first row becomes header
-year_fe <- year_fe[-1, ] # remove first row
 
 write_csv(year_fe, "a_temp/income_light_cfe_yfe_year_fe.csv") 
 
