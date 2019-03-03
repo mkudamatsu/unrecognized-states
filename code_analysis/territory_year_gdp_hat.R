@@ -14,7 +14,7 @@ pacman::p_load(data.table)
 
 # import data
 input1 <- read_csv("b_output/territory_year_light.csv") # light panel for unrecognized territories and their parent countries
-input2 <- read_csv("a_temp/income_light_cfe_yfe_year_fe_transposed.csv") # year_fe
+input2 <- read_csv("a_temp/income_light_cfe_yfe_year_fe.csv") # year_fe
 input3 <- read_csv("a_temp/income_light_cfe_yfe_light_coeff.csv") # light_coeff
 input4 <- read_csv("a_temp/territory_country_fe.csv") # country_fe
 
