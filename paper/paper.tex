@@ -104,11 +104,18 @@ For unrecognized state $i$, we cannot predict $y_{i,t}$ from equation (\ref{gdp}
 where $\hat{\beta}$ and $\hat{\eta_t}$ are the estimated $\beta$ and $\eta_t$ in equation (\ref{gdp}).
 
 \section{Results}
-The results from estimating equation (\ref{gdp}) are reported in Table \ref{panel_results}. 
-The elasticity of real GDP with respect to nighttime light intensity is xxx (significant at the x\% level). 
-Year fixed effect estimates are also reported as these values will be used to predict real GDP for unrecognized states. 
+\subsection{Fixed Effects Estimation Results}
+The results from estimating equation (\ref{gdp}) are reported in Table \ref{estimates}. 
+The elasticity of real GDP with respect to nighttime light intensity is 0.35 (significant at the 1\% level).
+This estimate is largely comparable to what the literature has found.%
+\footnote{
+	Henderson et al.\ (2012: Table 2) report the elasticity of 0.28 for the sample period of 1992-2008. Hodler and Raschky (2014: Appendix B) find the elasticity of 0.39 for subnational regions across the world for 1992-2009. Storeygard (2016: Table 1) obtains the elasticity of 0.25 for Chinese cities and prefectures for 1990-2005. 
+}   
+Year fixed effect estimates are also reported in Table \ref{estimates} as these values will be used to predict annual real GDP growth for unrecognized states. 
+Note that the adjusted R-squared is 0.99. 
+The model represented in equation (\ref{gdp}) explains almost all the variations in real GDP across countries and over time. 
 
-Plugging the coefficient estimates in Table \ref{panel_results} together with annual nighttime light observations into equation (\ref{growth}) yields the predicted growth of real GDP for unrecognized states and their parent countries. 
+Plugging the coefficient estimates in Table \ref{estimates} together with annual nighttime light observations into equation (\ref{growth}) yields the predicted growth of real GDP for unrecognized states and their parent countries. 
 Figures \ref{aze} to \ref{tra} plot these predictions.
 
 \subsection{Validation}
