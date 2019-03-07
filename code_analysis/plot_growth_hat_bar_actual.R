@@ -10,7 +10,6 @@ if (!require("pacman")) install.packages("pacman")
 pacman::p_load(tidyverse)
 pacman::p_load(data.table)
 pacman::p_load(ggplot2)
-pacman::p_load(forcat)
 
 
 ### visualize GDP growth for unrecognized states and parent countries ###
