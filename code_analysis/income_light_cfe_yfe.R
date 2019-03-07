@@ -47,24 +47,36 @@ data4analysis <- mutate(final_panel,
 reg <- felm(ln_income ~ ln_light + factor(countrycode) + factor(year) -1 | 0 | 0 | countrycode + year, data4analysis)
 
 # show results
-#stargazer(
-          #reg[c("ln_light", "factor(year)1993", "factor(year)1994", "factor(year)1995", "factor(year)1996", "factor(year)1997", "factor(year)1998", "factor(year)1999", 
-          #"factor(year)2000", "factor(year)2001", "factor(year)2002", "factor(year)2003", "factor(year)2004", "factor(year)2005", "factor(year)2006", "factor(year)2007", "factor(year)2008", "factor(year)2009", 
-          #"factor(year)2010", "factor(year)2011", "factor(year)2012", "factor(year)2013")],
-          #type = "text",
-          #dep.var.labels = c("Dependent Variable: ln(GDP)"),
-          #covariate.labels = c("ln(light)", "Year 1993", "Year 1994", "Year 1995", "Year 1996", "Year 1997", "Year 1998", "Year 1999", 
-                               #"Year 2000", "Year 2001","Year 2002", "Year 2003", "Year 2004", "Year 2005", "Year 2006", "Year 2007", "Year 2008", "Year 2009", 
-                               #"Year 2010", "Year 2011", "Year 2012", "Year 2013"),
-          #add.lines = list(c("Country fixed effexts", "Yes"),
-                           #c("Number of countries", "177"),
-                           #c("Number of observations", "3894")),
-          #keep.stat = c("adj.rsq"),
-          #table.layout = "-dc-ts-a="
-#)
+#  "factor(year)1993", "factor(year)1994", "factor(year)1995", "factor(year)1996", "factor(year)1997", "factor(year)1998", "factor(year)1999", 
+#"factor(year)2000", "factor(year)2001", "factor(year)2002", "factor(year)2003", "factor(year)2004", "factor(year)2005", "factor(year)2006", "factor(year)2007", "factor(year)2008", "factor(year)2009", 
+#"factor(year)2010", "factor(year)2011", "factor(year)2012", "factor(year)2013"
+stargazer(
+          reg[c("ln_light")],
+          type = "text",
+          keep.stat = c("adj.rsq"),
+          table.layout = "-dc-ts-a="
+)
 
 # create tex file of regression results
-#stargazer(reg, out = "a_output/income_light_cfe_yfe_result.tex")
+stargazer(
+  reg,
+  out = "a_output/income_light_cfe_yfe_result.tex", 
+  float=FALSE,   # removes the \begin{table} and \end{table}
+  dep.var.labels = c("Dependent Variable: log real GDP"),
+  keep = c("light", "year"),
+  covariate.labels = c(
+    "log mean light", 
+    "Year 1993", "Year 1994", "Year 1995", "Year 1996", "Year 1997", "Year 1998", "Year 1999", "Year 2000", "Year 2001","Year 2002", 
+    "Year 2003", "Year 2004", "Year 2005", "Year 2006", "Year 2007", "Year 2008", "Year 2009", "Year 2010", "Year 2011", "Year 2012", 
+    "Year 2013"
+    ),
+  add.lines = list(
+    c("Country fixed effects", "Yes"),
+    c("Number of countries", "177")
+    ),
+  keep.stat = c("adj.rsq", "n"),
+  table.layout = "-d-t-as="
+  )
 
 # estimate multiway-clustered SE
 
