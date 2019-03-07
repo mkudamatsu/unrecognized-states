@@ -52,7 +52,7 @@ geo %>%
   geom_bar(stat = "identity", position = position_dodge(), width = 0.75) +
   ylim(-60, 60) +
   labs(x = "Year", y = "Annual growth (%)") +
-  scale_fill_manual(labels = c(" Georgia (predicted)   ", " Georgia (actual)"),
+  scale_fill_manual(labels = c("Georgia (predicted)", "Georgia (actual)"),
                     values = c("#1F78B4", "#A6CEE3")) +
   theme(axis.text.x = element_text(angle = 70, size = 10, vjust = 0.5),
         axis.title.x = element_text(vjust = -0.35),
@@ -60,6 +60,7 @@ geo %>%
         legend.text = element_text(size = 10),
         legend.position = "top",
         legend.title=element_blank(),
+        legend.spacing.x = unit(0.2, "cm"),
         panel.grid.major = element_line(size = 0))
 
 ggsave("a_output/plot_growth_hat_bar_GEO_actual.png")
@@ -77,7 +78,7 @@ mda %>%
   geom_bar(stat = "identity", position = position_dodge(), width = 0.75) +
   ylim(-60, 60) +
   labs(x = "Year", y = "Annual growth (%)") +
-  scale_fill_manual(labels = c(" Moldova (predicted)   ", " Moldova (actual)"),
+  scale_fill_manual(labels = c("Moldova (predicted)", "Moldova (actual)"),
                     values = c("#1F78B4", "#A6CEE3")) +
   theme(axis.text.x = element_text(angle = 70, size = 10, vjust = 0.5),
         axis.title.x = element_text(vjust = -0.35),
@@ -85,6 +86,7 @@ mda %>%
         legend.text = element_text(size = 10),
         legend.position = "top",
         legend.title=element_blank(),
+        legend.spacing.x = unit(0.2, "cm"),
         panel.grid.major = element_line(size = 0))
 
 ggsave("a_output/plot_growth_hat_bar_MDA_actual.png")
@@ -102,7 +104,7 @@ aze %>%
   geom_bar(stat = "identity", position = position_dodge(), width = 0.75) +
   ylim(-60, 60) +
   labs(x = "Year", y = "Annual growth (%)") +
-  scale_fill_manual(labels = c(" Azerbaijan (predicted)   ", " Azerbaijan (actual)"),
+  scale_fill_manual(labels = c("Azerbaijan (predicted)", "Azerbaijan (actual)"),
                     values = c("#1F78B4", "#A6CEE3")) +
   theme(axis.text.x = element_text(angle = 70, size = 10, vjust = 0.5),
         axis.title.x = element_text(vjust = -0.35),
@@ -110,6 +112,7 @@ aze %>%
         legend.text = element_text(size = 10),
         legend.position = "top",
         legend.title=element_blank(),
+        legend.spacing.x = unit(0.2, "cm"),
         panel.grid.major = element_line(size = 0))
 
 ggsave("a_output/plot_growth_hat_bar_AZE_actual.png")
@@ -127,7 +130,7 @@ geo_abk %>%
   geom_bar(stat = "identity", position = position_dodge(), width = 0.75) +
   ylim(-60, 60) +
   labs(x = "Year", y = "Annual growth (%)") +
-  scale_fill_manual(labels = c(" Abkhazia   ", " Georgia (actual)"),
+  scale_fill_manual(labels = c("Abkhazia", "Georgia (actual)"),
     values = c("#fc9272", "#A6CEE3")) +
   theme(axis.text.x = element_text(angle = 70, size = 10, vjust = 0.5),
         axis.title.x = element_text(vjust = -0.35),
@@ -135,6 +138,7 @@ geo_abk %>%
         legend.text = element_text(size = 10),
         legend.position = "top",
         legend.title=element_blank(),
+        legend.spacing.x = unit(0.2, "cm"),
         panel.grid.major = element_line(size = 0))
 
 ggsave("a_output/plot_growth_hat_bar_GEO_ABK_actual.png")
@@ -152,7 +156,7 @@ geo_sos %>%
   geom_bar(stat = "identity", position = position_dodge(), width = 0.75) +
   ylim(-60, 60) +
   labs(x = "Year", y = "Annual growth (%)") +
-  scale_fill_manual(labels = c(" South Ossetia   ", " Georgia (actual)"),
+  scale_fill_manual(labels = c("South Ossetia", "Georgia (actual)"),
                     values = c("#fc9272", "#A6CEE3")) +
   theme(axis.text.x = element_text(angle = 70, size = 10, vjust = 0.5),
         axis.title.x = element_text(vjust = -0.35),
@@ -160,6 +164,7 @@ geo_sos %>%
         legend.text = element_text(size = 10),
         legend.position = "top",
         legend.title=element_blank(),
+        legend.spacing.x = unit(0.2, "cm"),
         panel.grid.major = element_line(size = 0))
 
 ggsave("a_output/plot_growth_hat_bar_GEO_SOS_actual.png")
@@ -177,7 +182,7 @@ mda_tra %>%
   geom_bar(stat = "identity", position = position_dodge(), width = 0.75) +
   ylim(-60, 60) +
   labs(x = "Year", y = "Annual growth (%)") +
-  scale_fill_manual(labels = c(" Transnistria   ", " Moldova (actual)"),
+  scale_fill_manual(labels = c("Transnistria", "Moldova (actual)"),
                     values = c("#fc9272", "#A6CEE3")) +
   theme(axis.text.x = element_text(angle = 70, size = 10, vjust = 0.5),
         axis.title.x = element_text(vjust = -0.35),
@@ -185,6 +190,7 @@ mda_tra %>%
         legend.text = element_text(size = 10),
         legend.position = "top",
         legend.title=element_blank(),
+        legend.spacing.x = unit(0.2, "cm"),
         panel.grid.major = element_line(size = 0))
 
 ggsave("a_output/plot_growth_hat_bar_MDA_TRA_actual.png")
@@ -202,7 +208,7 @@ aze_nkr %>%
   geom_bar(stat = "identity", position = position_dodge(), width = 0.75) +
   ylim(-60, 60) +
   labs(x = "Year", y = "Annual growth (%)") +
-  scale_fill_manual(labels = c(" Nagorno-Karabakh   ", " Azerbaijan (actual)"),
+  scale_fill_manual(labels = c("Nagorno-Karabakh", "Azerbaijan (actual)"),
                     values = c("#fc9272", "#A6CEE3")) +
   theme(axis.text.x = element_text(angle = 70, size = 10, vjust = 0.5),
         axis.title.x = element_text(vjust = -0.35),
@@ -210,6 +216,7 @@ aze_nkr %>%
         legend.text = element_text(size = 10),
         legend.position = "top",
         legend.title=element_blank(),
+        legend.spacing.x = unit(0.2, "cm"),
         panel.grid.major = element_line(size = 0))
 
 ggsave("a_output/plot_growth_hat_bar_AZE_NKR_actual.png")
