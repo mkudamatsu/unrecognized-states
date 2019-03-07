@@ -49,20 +49,23 @@ geo$territory <- factor(geo$territory, levels = c("GEO (predicted)", "GEO (actua
 geo %>% 
   ggplot(aes(x = year, y = growth, fill = territory)) +
   geom_bar(stat = "identity", position = position_dodge(), width = 0.75) +
-  ylim(-60, 60) +
-  labs(x = "Year", y = "Annual growth (%)") +
+  scale_x_discrete(name = "Year") +
+  scale_y_continuous(name = "Annual growth (%)", limits = c(-60,60), 
+                     expand = c(0,0), breaks = seq(-50,50, by = 10)) +
   scale_fill_manual(labels = c("Georgia (predicted)", "Georgia (actual)"),
                     values = c("#1F78B4", "#A6CEE3")) +
-  theme(axis.text.x = element_text(angle = 70, size = 10, vjust = 0.5),
-        axis.title.x = element_text(vjust = -0.35),
-        axis.title.y = element_text(vjust = 0.35),
+  theme(legend.title = element_blank(),
         legend.text = element_text(size = 10),
         legend.position = "top",
-        legend.title=element_blank(),
         legend.spacing.x = unit(0.2, "cm"),
-        panel.grid.major = element_line(size = 0))
+        legend.margin = margin(b = -0.15, unit = "cm"),
+        axis.title.x = element_text(size = 10, vjust = -0.5),
+        axis.title.y = element_text(size = 10, vjust = 1),
+        axis.text.x = element_text(angle = 70, vjust = 0.5),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor = element_blank())
 
-ggsave("a_output/plot_growth_hat_bar_GEO_actual.png")
+ggsave("a_output/plot_growth_hat_GEO_actual.png")
 
 # plot MDA
 mda <- fulldata %>% 
@@ -75,20 +78,23 @@ mda$territory <- factor(mda$territory, levels = c("MDA (predicted)", "MDA (actua
 mda %>% 
   ggplot(aes(x = year, y = growth, fill = territory)) +
   geom_bar(stat = "identity", position = position_dodge(), width = 0.75) +
-  ylim(-60, 60) +
-  labs(x = "Year", y = "Annual growth (%)") +
+  scale_x_discrete(name = "Year") +
+  scale_y_continuous(name = "Annual growth (%)", limits = c(-60,60), 
+                     expand = c(0,0), breaks = seq(-50,50, by = 10)) +
   scale_fill_manual(labels = c("Moldova (predicted)", "Moldova (actual)"),
                     values = c("#1F78B4", "#A6CEE3")) +
-  theme(axis.text.x = element_text(angle = 70, size = 10, vjust = 0.5),
-        axis.title.x = element_text(vjust = -0.35),
-        axis.title.y = element_text(vjust = 0.35),
+  theme(legend.title = element_blank(),
         legend.text = element_text(size = 10),
         legend.position = "top",
-        legend.title=element_blank(),
         legend.spacing.x = unit(0.2, "cm"),
-        panel.grid.major = element_line(size = 0))
+        legend.margin = margin(b = -0.15, unit = "cm"),
+        axis.title.x = element_text(size = 10, vjust = -0.5),
+        axis.title.y = element_text(size = 10, vjust = 1),
+        axis.text.x = element_text(angle = 70, vjust = 0.5),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor = element_blank())
 
-ggsave("a_output/plot_growth_hat_bar_MDA_actual.png")
+ggsave("a_output/plot_growth_hat_MDA_actual.png")
 
 # plot AZE
 aze <- fulldata %>% 
@@ -101,20 +107,23 @@ aze$territory <- factor(aze$territory, levels = c("AZE (predicted)", "AZE (actua
 aze %>% 
   ggplot(aes(x = year, y = growth, fill = territory)) +
   geom_bar(stat = "identity", position = position_dodge(), width = 0.75) +
-  ylim(-60, 60) +
-  labs(x = "Year", y = "Annual growth (%)") +
+  scale_x_discrete(name = "Year") +
+  scale_y_continuous(name = "Annual growth (%)", limits = c(-60,60), 
+                     expand = c(0,0), breaks = seq(-50,50, by = 10)) +
   scale_fill_manual(labels = c("Azerbaijan (predicted)", "Azerbaijan (actual)"),
                     values = c("#1F78B4", "#A6CEE3")) +
-  theme(axis.text.x = element_text(angle = 70, size = 10, vjust = 0.5),
-        axis.title.x = element_text(vjust = -0.35),
-        axis.title.y = element_text(vjust = 0.35),
+  theme(legend.title = element_blank(),
         legend.text = element_text(size = 10),
         legend.position = "top",
-        legend.title=element_blank(),
         legend.spacing.x = unit(0.2, "cm"),
-        panel.grid.major = element_line(size = 0))
+        legend.margin = margin(b = -0.15, unit = "cm"),
+        axis.title.x = element_text(size = 10, vjust = -0.5),
+        axis.title.y = element_text(size = 10, vjust = 1),
+        axis.text.x = element_text(angle = 70, vjust = 0.5),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor = element_blank())
 
-ggsave("a_output/plot_growth_hat_bar_AZE_actual.png")
+ggsave("a_output/plot_growth_hat_AZE_actual.png")
 
 ## plot growth for unrecognized states and parent countries ##
 
@@ -127,20 +136,23 @@ geo_abk$year <- as.factor(geo_abk$year)
 geo_abk %>% 
   ggplot(aes(x = year, y = growth, fill = territory)) +
   geom_bar(stat = "identity", position = position_dodge(), width = 0.75) +
-  ylim(-60, 60) +
-  labs(x = "Year", y = "Annual growth (%)") +
+  scale_x_discrete(name = "Year") +
+  scale_y_continuous(name = "Annual growth (%)", limits = c(-60,60), 
+                     expand = c(0,0), breaks = seq(-50,50, by = 10)) +
   scale_fill_manual(labels = c("Abkhazia", "Georgia (actual)"),
     values = c("#fc9272", "#A6CEE3")) +
-  theme(axis.text.x = element_text(angle = 70, size = 10, vjust = 0.5),
-        axis.title.x = element_text(vjust = -0.35),
-        axis.title.y = element_text(vjust = 0.35),
+  theme(legend.title = element_blank(),
         legend.text = element_text(size = 10),
         legend.position = "top",
-        legend.title=element_blank(),
         legend.spacing.x = unit(0.2, "cm"),
-        panel.grid.major = element_line(size = 0))
+        legend.margin = margin(b = -0.15, unit = "cm"),
+        axis.title.x = element_text(size = 10, vjust = -0.5),
+        axis.title.y = element_text(size = 10, vjust = 1),
+        axis.text.x = element_text(angle = 70, vjust = 0.5),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor = element_blank())
 
-ggsave("a_output/plot_growth_hat_bar_GEO_ABK_actual.png")
+ggsave("a_output/plot_growth_hat_GEO_ABK_actual.png")
 
 # plot GEO_SOS
 geo_sos <- fulldata %>% 
@@ -153,20 +165,23 @@ geo_sos$territory <- factor(geo_sos$territory, levels = c("SOS", "GEO (actual)")
 geo_sos %>% 
   ggplot(aes(x = year, y = growth, fill = territory)) +
   geom_bar(stat = "identity", position = position_dodge(), width = 0.75) +
-  ylim(-60, 60) +
-  labs(x = "Year", y = "Annual growth (%)") +
+  scale_x_discrete(name = "Year") +
+  scale_y_continuous(name = "Annual growth (%)", limits = c(-60,60), 
+                     expand = c(0,0), breaks = seq(-50,50, by = 10)) +
   scale_fill_manual(labels = c("South Ossetia", "Georgia (actual)"),
                     values = c("#fc9272", "#A6CEE3")) +
-  theme(axis.text.x = element_text(angle = 70, size = 10, vjust = 0.5),
-        axis.title.x = element_text(vjust = -0.35),
-        axis.title.y = element_text(vjust = 0.35),
+  theme(legend.title = element_blank(),
         legend.text = element_text(size = 10),
         legend.position = "top",
-        legend.title=element_blank(),
         legend.spacing.x = unit(0.2, "cm"),
-        panel.grid.major = element_line(size = 0))
+        legend.margin = margin(b = -0.15, unit = "cm"),
+        axis.title.x = element_text(size = 10, vjust = -0.5),
+        axis.title.y = element_text(size = 10, vjust = 1),
+        axis.text.x = element_text(angle = 70, vjust = 0.5),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor = element_blank())
 
-ggsave("a_output/plot_growth_hat_bar_GEO_SOS_actual.png")
+ggsave("a_output/plot_growth_hat_GEO_SOS_actual.png")
 
 # plot MDA_TRA
 mda_tra <- fulldata %>% 
@@ -179,20 +194,23 @@ mda_tra$territory <- factor(mda_tra$territory, levels = c("TRA", "MDA (actual)")
 mda_tra %>% 
   ggplot(aes(x = year, y = growth, fill = territory)) +
   geom_bar(stat = "identity", position = position_dodge(), width = 0.75) +
-  ylim(-60, 60) +
-  labs(x = "Year", y = "Annual growth (%)") +
+  scale_x_discrete(name = "Year") +
+  scale_y_continuous(name = "Annual growth (%)", limits = c(-60,60), 
+                     expand = c(0,0), breaks = seq(-50,50, by = 10)) +
   scale_fill_manual(labels = c("Transnistria", "Moldova (actual)"),
                     values = c("#fc9272", "#A6CEE3")) +
-  theme(axis.text.x = element_text(angle = 70, size = 10, vjust = 0.5),
-        axis.title.x = element_text(vjust = -0.35),
-        axis.title.y = element_text(vjust = 0.35),
+  theme(legend.title = element_blank(),
         legend.text = element_text(size = 10),
         legend.position = "top",
-        legend.title=element_blank(),
         legend.spacing.x = unit(0.2, "cm"),
-        panel.grid.major = element_line(size = 0))
+        legend.margin = margin(b = -0.15, unit = "cm"),
+        axis.title.x = element_text(size = 10, vjust = -0.5),
+        axis.title.y = element_text(size = 10, vjust = 1),
+        axis.text.x = element_text(angle = 70, vjust = 0.5),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor = element_blank())
 
-ggsave("a_output/plot_growth_hat_bar_MDA_TRA_actual.png")
+ggsave("a_output/plot_growth_hat_MDA_TRA_actual.png")
 
 # plot AZE_NKR
 aze_nkr <- fulldata %>% 
@@ -205,17 +223,20 @@ aze_nkr$territory <- factor(aze_nkr$territory, levels = c("NKR", "AZE (actual)")
 aze_nkr %>% 
   ggplot(aes(x = year, y = growth, fill = territory)) +
   geom_bar(stat = "identity", position = position_dodge(), width = 0.75) +
-  ylim(-60, 60) +
-  labs(x = "Year", y = "Annual growth (%)") +
+  scale_x_discrete(name = "Year") +
+  scale_y_continuous(name = "Annual growth (%)", limits = c(-60,60), 
+                     expand = c(0,0), breaks = seq(-50,50, by = 10)) +
   scale_fill_manual(labels = c("Nagorno-Karabakh", "Azerbaijan (actual)"),
                     values = c("#fc9272", "#A6CEE3")) +
-  theme(axis.text.x = element_text(angle = 70, size = 10, vjust = 0.5),
-        axis.title.x = element_text(vjust = -0.35),
-        axis.title.y = element_text(vjust = 0.35),
+  theme(legend.title = element_blank(),
         legend.text = element_text(size = 10),
         legend.position = "top",
-        legend.title=element_blank(),
         legend.spacing.x = unit(0.2, "cm"),
-        panel.grid.major = element_line(size = 0))
+        legend.margin = margin(b = -0.15, unit = "cm"),
+        axis.title.x = element_text(size = 10, vjust = -0.5),
+        axis.title.y = element_text(size = 10, vjust = 1),
+        axis.text.x = element_text(angle = 70, vjust = 0.5),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor = element_blank())
 
-ggsave("a_output/plot_growth_hat_bar_AZE_NKR_actual.png")
+ggsave("a_output/plot_growth_hat_AZE_NKR_actual.png")
