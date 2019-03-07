@@ -59,7 +59,7 @@ geo %>%
         legend.title=element_blank(),
         panel.grid.major = element_line(size = 0))
 
-ggsave("a_output/plot_growth_hat_bar_GEO_predicted.png")
+ggsave("a_output/plot_growth_hat_GEO.png")
 
 # plot MDA
 mda <- fulldata %>% 
@@ -82,7 +82,7 @@ mda %>%
         legend.title=element_blank(),
         panel.grid.major = element_line(size = 0))
 
-ggsave("a_output/plot_growth_hat_bar_MDA_predicted.png")
+ggsave("a_output/plot_growth_hat_MDA.png")
 
 # plot AZE
 aze <- fulldata %>% 
@@ -105,7 +105,7 @@ aze %>%
         legend.title=element_blank(),
         panel.grid.major = element_line(size = 0))
 
-ggsave("a_output/plot_growth_hat_bar_AZE_predicted.png")
+ggsave("a_output/plot_growth_hat_AZE.png")
 
 ## plot growth for unrecognized states and parent countries ##
 
@@ -130,7 +130,7 @@ geo_abk %>%
         legend.title=element_blank(),
         panel.grid.major = element_line(size = 0))
 
-ggsave("a_output/plot_growth_hat_bar_GEO_ABK_predicted.png")
+ggsave("a_output/plot_growth_hat_ABK.png")
 
 # plot GEO_SOS
 geo_sos <- fulldata %>% 
@@ -155,7 +155,7 @@ geo_sos %>%
         legend.title=element_blank(),
         panel.grid.major = element_line(size = 0))
 
-ggsave("a_output/plot_growth_hat_bar_GEO_SOS_predicted.png")
+ggsave("a_output/plot_growth_hat_SOS.png")
 
 # plot MDA_TRA
 mda_tra <- fulldata %>% 
@@ -180,7 +180,7 @@ mda_tra %>%
         legend.title=element_blank(),
         panel.grid.major = element_line(size = 0))
 
-ggsave("a_output/plot_growth_hat_bar_MDA_TRA_predicted.png")
+ggsave("a_output/plot_growth_hat_TRA.png")
 
 # plot AZE_NKR
 aze_nkr <- fulldata %>% 
@@ -205,4 +205,4 @@ aze_nkr %>%
         legend.title=element_blank(),
         panel.grid.major = element_line(size = 0))
 
-ggsave("a_output/plot_growth_hat_bar_AZE_NKR_predicted.png")
+ggsave("a_output/plot_growth_hat_NKR.png")
