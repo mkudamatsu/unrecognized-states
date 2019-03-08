@@ -48,8 +48,8 @@ geo %>%
   ggplot(aes(x = year, y = growth, fill = territory)) +
   geom_bar(stat = "identity", position = position_dodge(), width = 0.75) +
   scale_x_discrete(name = "Year") +
-  scale_y_continuous(name = "Annual growth (%)", limits = c(-60,60), 
-                     expand = c(0,0), breaks = seq(-50,50, by = 10)) +
+  scale_y_continuous(name = "Annual growth (%)", limits = c(-58, 58), 
+                     expand = c(0, 0), breaks = seq(-50, 50, by = 10)) +
   scale_fill_manual(labels = c("Georgia (actual)", "Georgia (predicted)"),
                     values = c("#1F78B4", "#A6CEE3")) +
   theme(legend.title = element_blank(),
@@ -60,8 +60,11 @@ geo %>%
         axis.title.x = element_text(size = 10, vjust = -0.5),
         axis.title.y = element_text(size = 10, vjust = 1),
         axis.text.x = element_text(angle = 70, vjust = 0.5),
+        axis.ticks.x = element_blank(),
+        axis.ticks.y = element_blank(),
         panel.grid.major.x = element_blank(),
-        panel.grid.minor = element_blank())
+        panel.grid.minor = element_blank(),
+        aspect.ratio = 1/1.6)
 
 ggsave("a_output/plot_growth_hat_GEO.png")
 
@@ -75,8 +78,8 @@ mda %>%
   ggplot(aes(x = year, y = growth, fill = territory)) +
   geom_bar(stat = "identity", position = position_dodge(), width = 0.75) +
   scale_x_discrete(name = "Year") +
-  scale_y_continuous(name = "Annual growth (%)", limits = c(-60,60), 
-                     expand = c(0,0), breaks = seq(-50,50, by = 10)) +
+  scale_y_continuous(name = "Annual growth (%)", limits = c(-58, 58), 
+                     expand = c(0, 0), breaks = seq(-50, 50, by = 10)) +
   scale_fill_manual(labels = c("Moldova (actual)", "Moldova (predicted)"),
                     values = c("#1F78B4", "#A6CEE3")) +
   theme(legend.title = element_blank(),
@@ -87,8 +90,11 @@ mda %>%
         axis.title.x = element_text(size = 10, vjust = -0.5),
         axis.title.y = element_text(size = 10, vjust = 1),
         axis.text.x = element_text(angle = 70, vjust = 0.5),
+        axis.ticks.x = element_blank(),
+        axis.ticks.y = element_blank(),
         panel.grid.major.x = element_blank(),
-        panel.grid.minor = element_blank())
+        panel.grid.minor = element_blank(),
+        aspect.ratio = 1/1.6)
 
 ggsave("a_output/plot_growth_hat_MDA.png")
 
@@ -102,8 +108,8 @@ aze %>%
   ggplot(aes(x = year, y = growth, fill = territory)) +
   geom_bar(stat = "identity", position = position_dodge(), width = 0.75) +
   scale_x_discrete(name = "Year") +
-  scale_y_continuous(name = "Annual growth (%)", limits = c(-60,60), 
-                     expand = c(0,0), breaks = seq(-50,50, by = 10)) +
+  scale_y_continuous(name = "Annual growth (%)", limits = c(-58, 58), 
+                     expand = c(0, 0), breaks = seq(-50, 50, by = 10)) +
   scale_fill_manual(labels = c("Azerbaijan (actual)", "Azerbaijan (predicted)"),
                     values = c("#1F78B4", "#A6CEE3")) +
   theme(legend.title = element_blank(),
@@ -114,8 +120,11 @@ aze %>%
         axis.title.x = element_text(size = 10, vjust = -0.5),
         axis.title.y = element_text(size = 10, vjust = 1),
         axis.text.x = element_text(angle = 70, vjust = 0.5),
+        axis.ticks.x = element_blank(),
+        axis.ticks.y = element_blank(),
         panel.grid.major.x = element_blank(),
-        panel.grid.minor = element_blank())
+        panel.grid.minor = element_blank(),
+        aspect.ratio = 1/1.6)
 
 ggsave("a_output/plot_growth_hat_AZE.png")
 
@@ -131,8 +140,8 @@ geo_abk %>%
   ggplot(aes(x = year, y = growth, fill = territory)) +
   geom_bar(stat = "identity", position = position_dodge(), width = 0.75) +
   scale_x_discrete(name = "Year") +
-  scale_y_continuous(name = "Annual growth (%)", limits = c(-60,60), 
-                     expand = c(0,0), breaks = seq(-50,50, by = 10)) +
+  scale_y_continuous(name = "Annual growth (%)", limits = c(-58, 58), 
+                     expand = c(0, 0), breaks = seq(-50, 50, by = 10)) +
   scale_fill_manual(labels = c("Abkhazia", "Georgia (predicted)"),
                     values = c("#fc9272", "#A6CEE3")) +
   theme(legend.title = element_blank(),
@@ -143,8 +152,11 @@ geo_abk %>%
         axis.title.x = element_text(size = 10, vjust = -0.5),
         axis.title.y = element_text(size = 10, vjust = 1),
         axis.text.x = element_text(angle = 70, vjust = 0.5),
+        axis.ticks.x = element_blank(),
+        axis.ticks.y = element_blank(),
         panel.grid.major.x = element_blank(),
-        panel.grid.minor = element_blank())
+        panel.grid.minor = element_blank(),
+        aspect.ratio = 1/1.6)
 
 ggsave("a_output/plot_growth_hat_ABK.png")
 
@@ -160,8 +172,8 @@ geo_sos %>%
   ggplot(aes(x = year, y = growth, fill = territory)) +
   geom_bar(stat = "identity", position = position_dodge(), width = 0.75) +
   scale_x_discrete(name = "Year") +
-  scale_y_continuous(name = "Annual growth (%)", limits = c(-60,60), 
-                     expand = c(0,0), breaks = seq(-50,50, by = 10)) +
+  scale_y_continuous(name = "Annual growth (%)", limits = c(-58, 58), 
+                     expand = c(0, 0), breaks = seq(-50, 50, by = 10)) +
   scale_fill_manual(labels = c("South Ossetia", "Georgia (predicted)"),
                     values = c("#fc9272", "#A6CEE3")) +
   theme(legend.title = element_blank(),
@@ -172,8 +184,11 @@ geo_sos %>%
         axis.title.x = element_text(size = 10, vjust = -0.5),
         axis.title.y = element_text(size = 10, vjust = 1),
         axis.text.x = element_text(angle = 70, vjust = 0.5),
+        axis.ticks.x = element_blank(),
+        axis.ticks.y = element_blank(),
         panel.grid.major.x = element_blank(),
-        panel.grid.minor = element_blank())
+        panel.grid.minor = element_blank(),
+        aspect.ratio = 1/1.6)
 
 ggsave("a_output/plot_growth_hat_SOS.png")
 
@@ -189,8 +204,8 @@ mda_tra %>%
   ggplot(aes(x = year, y = growth, fill = territory)) +
   geom_bar(stat = "identity", position = position_dodge(), width = 0.75) +
   scale_x_discrete(name = "Year") +
-  scale_y_continuous(name = "Annual growth (%)", limits = c(-60,60), 
-                     expand = c(0,0), breaks = seq(-50,50, by = 10)) +
+  scale_y_continuous(name = "Annual growth (%)", limits = c(-58, 58), 
+                     expand = c(0, 0), breaks = seq(-50, 50, by = 10)) +
   scale_fill_manual(labels = c("Transnistria", "Moldova (predicted)"),
                     values = c("#fc9272", "#A6CEE3")) +
   theme(legend.title = element_blank(),
@@ -201,8 +216,11 @@ mda_tra %>%
         axis.title.x = element_text(size = 10, vjust = -0.5),
         axis.title.y = element_text(size = 10, vjust = 1),
         axis.text.x = element_text(angle = 70, vjust = 0.5),
+        axis.ticks.x = element_blank(),
+        axis.ticks.y = element_blank(),
         panel.grid.major.x = element_blank(),
-        panel.grid.minor = element_blank())
+        panel.grid.minor = element_blank(),
+        aspect.ratio = 1/1.6)
 
 ggsave("a_output/plot_growth_hat_TRA.png")
 
@@ -218,8 +236,8 @@ aze_nkr %>%
   ggplot(aes(x = year, y = growth, fill = territory)) +
   geom_bar(stat = "identity", position = position_dodge(), width = 0.75) +
   scale_x_discrete(name = "Year") +
-  scale_y_continuous(name = "Annual growth (%)", limits = c(-60,60), 
-                     expand = c(0,0), breaks = seq(-50,50, by = 10)) +
+  scale_y_continuous(name = "Annual growth (%)", limits = c(-58, 58), 
+                     expand = c(0, 0), breaks = seq(-50, 50, by = 10)) +
   scale_fill_manual(labels = c("Nagorno-Karabakh", "Azerbaijan (predicted)"),
                     values = c("#fc9272", "#A6CEE3")) +
   theme(legend.title = element_blank(),
@@ -230,7 +248,10 @@ aze_nkr %>%
         axis.title.x = element_text(size = 10, vjust = -0.5),
         axis.title.y = element_text(size = 10, vjust = 1),
         axis.text.x = element_text(angle = 70, vjust = 0.5),
+        axis.ticks.x = element_blank(),
+        axis.ticks.y = element_blank(),
         panel.grid.major.x = element_blank(),
-        panel.grid.minor = element_blank())
+        panel.grid.minor = element_blank(),
+        aspect.ratio = 1/1.6)
 
 ggsave("a_output/plot_growth_hat_NKR.png")
