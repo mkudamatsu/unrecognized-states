@@ -419,10 +419,10 @@ Following Henderson et al.\ (2012), we model real GDP in territory $i$ in year $
 where $L_{i,t}$ is nighttime light intensity in territory $i$ in year $t$, $\mu_i$ the territory fixed effect, $\eta_t$ the year fixed effect, and $\varepsilon_{i,t}$ the error term.
 
 % Sample
-To estimate $\beta$, $\mu_i$, and $\eta_t$ in equation (\ref{gdp}) with OLS, we use the balanced panel of countries around the world from 1992 to 2013 so that we can avoid compositional bias in the estimation of territory and year fixed effects, $\mu_i$ and $\eta_t$. 
-The sample of countries excludes the parent countries of unrecognized states (i.e.\ Georgia, Azerbaijan, and Moldova) because we will validate our predicted values of real GDP against the actual real GDP in these three countries.
+We estimate equation (\ref{gdp}) with OLS, by using the balanced panel of countries around the world from 1992 to 2013. The balanced panel ensures no compositional bias in the estimation of year fixed effects, $\eta_t$, important parameters to recover $y_{i,t}$ for unrecognized states (see below). 
+The sample of countries excludes the parent countries of unrecognized states (i.e.\ Georgia, Azerbaijan, and Moldova) because we will validate our predicted values of real GDP growth against the actual real GDP growth rates in these three countries.
 Standard errors are clustered both at the territory level and at the year level with the multi-way cluster robust inference method (Cameron et al.\ 2011).%
-\footnote{Due to multicollinearity, we need to drop one dummy for either a country or a year when we estimate equation (\ref{gdp}). We drop the dummy for year 1992 because the country fixed effects estimates will be used to predict ``country'' fixed effects for unrecognized states and their parent countries, as described in the next paragraph.}
+\footnote{Due to multicollinearity, we need to drop one dummy for either a country or a year when we estimate equation (\ref{gdp}). We drop the dummy for year 1992.}
 
 % Predict real GDP growth for unrecognized states
 For unrecognized state $i$, we cannot predict $y_{i,t}$ from equation (\ref{gdp}) because there is no straightforward way to estimate $\mu_i$. However, we can predict the annual growth rate of $y_{i,t}$, denoted by $\hat{g}_{i,t}$, by taking the first-difference of equation (\ref{gdp}) to remove $\mu_i$:
