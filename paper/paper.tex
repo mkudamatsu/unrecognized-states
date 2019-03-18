@@ -435,11 +435,11 @@ where $\hat{\beta}$ and $\hat{\eta_t}$ are the estimated $\beta$ and $\eta_t$ in
 
 \section{Results}
 \subsection{Fixed Effects Estimation Results}
-The results from estimating equation (\ref{gdp}) are reported in Table \ref{estimates}. 
-The elasticity of real GDP with respect to nighttime light intensity is 0.35 (significant at the 1\% level).
+Table \ref{estimates} reports the results from estimating equation (\ref{gdp}). 
+The elasticity of real GDP with respect to nighttime light intensity is 0.35 (significantly different from zero at the 1\% level).
 This estimate is largely comparable to what the literature has found.%
 \footnote{
-	Henderson et al.\ (2012: Table 2) report the elasticity of 0.28 for the sample period of 1992--2008. Hodler and Raschky (2014: Appendix B) find the elasticity of 0.39 for subnational regions across the world for 1992--2009. Storeygard (2016: Table 1) obtains the elasticity of 0.25 for Chinese cities and prefectures for 1990--2005. 
+	Henderson et al.\ (2012:Table 2) report the elasticity of 0.28 for the sample period of 1992--2008. Hodler and Raschky (2014:Appendix B) find the elasticity of 0.39 for subnational regions across the world for 1992--2009. Storeygard (2016:Table 1) obtains the elasticity of 0.25 for Chinese cities and prefectures for 1990--2005. 
 }   
 Year fixed effect estimates are also reported in Table \ref{estimates} as these values will be used to predict annual real GDP growth for unrecognized states. 
 Note that the adjusted R-squared is 0.99. 
@@ -448,25 +448,29 @@ The model represented in equation (\ref{gdp}) explains almost all the variations
 Plugging the coefficient estimates in Table \ref{estimates} together with annual nighttime light observations into equation (\ref{growth}) yields the predicted growth of real GDP for unrecognized states and their parent countries. 
 Figures \ref{aze} to \ref{tra} plot these predictions.
 
-\subsection{Validation}
+\subsection{Validation}\label{validation}
 We first validate our methodology by comparing the predicted growth with the actual growth of real GDP from the Penn World Table for the three parent countries. 
+
 % Azerbaijan
 Figure \ref{aze} shows the results for Azerbaijan.
 For years 1993--2004 and 2012--2013, the predicted growth rates do not align well with the actual growth rates, even showing a wrong sign in some years. 
 From 2005 to 2011, however, the predicted growth rates capture the trend in the actual growth rates. 
 The predicted growth generally underestimates the actual growth, probably because nighttime light does not capture the GDP growth due to world oil price hikes.%
 \footnote{
-	As discussed in Section \ref{background}, Azerbaijan became an oil exporter with major oil pipelines opened in 2006. 
+	Azerbaijan has become an oil exporter over the sample period. 	
 	World oil prices surged during the period of 2005--2008. 
 }
+
 % Georgia
 Figure \ref{geo} compares the actual growth rates with the predicted ones for Georgia. 
 Similarly to Azerbaijan, years 1993--2003 see discrepancies between the predicted and actual growth rates, with opposite signs in some years. 
 For years 2004--2013, however, the predicted growth roughly picks up the trend in the actual growth, with the magnitude also comparable.
+
 % Moldova
 Figure \ref{mda} shows the results for Moldova.
 For years 1993--2003 and 2011--2013, the predicted growth deviates from the actual growth, with a wrong sign in some years.
 Years 2004--2010 see the predicted growth approximate the actual growth relatively well.
+
 % Summary
 Overall, the predicted growth around years 2004--2010 is trustworthy. 
 Outside this period, either our prediction methodology fails or the official GDP statistics from these countries is prone to errors.%
@@ -481,32 +485,37 @@ We use as a benchmark the predicted growth, not the actual growth, in the parent
 
 \paragraph{Nagorno-Karabakh}
 Figure \ref{nkr} shows the predicted annual real GDP growth rates for Nagorno-Karabakh in comparison to the predicted growth for its parent country, Azerbaijan. 
-For years 1993--1995, Karabakh's economy is estimated to have shrunk by over 10\% annually, reflecting the damage from the war of secession from Azerbaijan. 
+For years 1993--1995, Karabakh's economy is estimated to have annually shrunk by 10\% or more, reflecting the damage from the war of secession from Azerbaijan. 
 From 1996 to 2004, the estimated economic growth was very volatile.
-For the period 2005--2011, where Azerbaijan's predicted growth rates trace the trend in the actual growth, Nagorno-Karabakh's economic growth exceeds 10\% (except for 2009 and 2011). 
-These growth rates exceed the predicted growth rates in Azerbaijan proper.
+For the period 2005--2011, where Azerbaijan's predicted growth rates trace the trend in the actual growth (see Section \ref{validation} above), Nagorno-Karabakh's economic growth exceeds 10\% (except for 2009 and 2011). 
+
+The growth rates for 2005--2011 exceed the predicted growth rates in Azerbaijan proper.
 It may just reflect the higher marginal product of capital per worker in Nagorno-Karabakh as the territory is poorer than the rest of Azerbaijan. 
 However, it may also suggest that the impact of being unrecognized as a sovereign state is minimal in terms of economic recovery from civil wars in the case of Nagorno-Karabakh.
 
 \paragraph{Abkhazia}
 Figure \ref{abk} shows the predicted annual real GDP growth for Abkhazia in comparison to the predicted growth in Georgia proper. 
 For years 1993--2003, the estimated economic growth rates are very volatile in Abkhazia though the ones in Georgia are equally volatile as well.
-For the period 2004--2013, when Georgia's predicted growth corresponds well with its actual growth, Abkhazia's growth rates are positive and largely comparable to Georgia's growth.   
+For the period 2004--2013, when Georgia's predicted growth corresponds well with its actual growth (see Section \ref{validation} above), Abkhazia's growth rates are positive and largely comparable to Georgia's growth.   
+
 Overall, the impact of being unrecognized as a sovereign state appears to be minimal in the case of Abkhazia as long as Georgia proper is a valid counterfactual.
 
 \paragraph{South Ossetia}
 Figure \ref{sos} compares the predicted growth rates for South Ossetia with the ones for Georgia proper.
 For the period 2004--2013, when Georgia's predicted and actual growth rates co-move, South Ossetia's predicted growth is comparable to Georgia's.
-From 2010, South Ossetia outperforms Georgia in predicted growth, probably reflecting the consequences of South Ossetian War in 2008: Russia actively helps South Ossetia financially while Georgia loses its trade with Russia.
+From 2010, South Ossetia outperforms Georgia in predicted growth, probably reflecting the consequences of South Ossetian War in 2008: Russia actively helps South Ossetia financially while Georgia loses its trade with Russia due to the strict border control by the Russian army (see Sections \ref{state-building} and \ref{economic}).
+
+As in Nagorno-Karabakh and Abkhazia, the impact of being unrecognized appears to be fairly limited for South Ossetia in comparison to Georgia.
 
 \paragraph{Transnistria}
 Finally, Figure \ref{tra} reports the predicted economic growth rates for Transnistria in comparison to those for Moldova proper. 
-Transnistria's predicted economic growth is volatile during the entire sample period, including years 2004--2010, when Moldova's predicted and actual real GDP growth rates correspond well to each other. 
+Transnistria's predicted economic growth is volatile during the entire sample period, including years 2004--2010, when Moldova's predicted and actual real GDP growth rates correspond well to each other (see Section \ref{validation} above). 
 Its magnitude is overall smaller than the other three unrecognized states.
 The same remarks apply to its parent country, Moldova, suggesting that the impact of being unrecognized as a sovereign state is minimal in the case of Transnistria.
 
 \section{Conclusions}
-
+% Discuss external validity
+% Future research: precise border data and RD design
 
 \begin{thebibliography}{99}
 \bibitem{} ACASIAN (Australian Consortium for the Asian Spatial Information and Analysis Network). 2014. \textit{Russian Federation and Former Soviet Republics Research GIS Databases}. http://acasian.com (accessed on 20 February, 2018).
