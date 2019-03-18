@@ -344,8 +344,9 @@ To the extent that state-building (Besley and Persson 2011) and democracy (Acemo
 It is therefore an empirical question whether being unrecognized as a sovereign state positively or negatively affects economic development.	
 
 \section{Data}
+This section describes the datasets we use to recover economic growth rates in the four unrecognized states from satellite images of nighttime light.
 \subsection{Real GDP}
-We use the Penn World Table 9.0 (Freenstra et al.\ 2015), as the data source for real GDP. 
+We use the Penn World Table 9.0 (Freenstra et al.\ 2015) as the data source for real GDP. 
 Expenditure-side real GDP at chained PPPs in 2011 US dollars (the variable \textit{rgdpe}) is used because the variable is meant for comparing ``living standards across countries and across years'' (Freenstra et al.\ 2015, Table 1).
 
 % Comparison to WDI
@@ -356,9 +357,10 @@ As we exploit the variation in nighttime light not only within each country but 
 
 \subsection{Nighttime light}
 The data source for nighttime light is the DMSP-OLS Nighttime Lights Time Series, Version 4 (National Geophysical Data Center 2015). 
-It provides annual panel data of nighttime light intensity at the 30 arc-second cells across the world. 
+It provides annual panel data (1992--2013) of nighttime light intensity at the 30 arc-second cells across the world. 
 The value of light intensity ranges from 0 to 63, which is not comparable across years due to the aging and replacement of satellite sensors. 
 See Henderson et al.\ (2012) among others for more detail about the dataset.
+
 Following Hodler and Raschky (2014), who aggregate light data into the sub-national level, we take the average of all the cell-level values within each country/territory as a measure of light intensity at the country/territory level.
 
 % Validation
@@ -372,35 +374,41 @@ To aggregate nighttime light intensity at the 30 arc-second cell level into the 
 We use GADM (2018), following Alesina et al.\ (2016) and Dreher et al.\ (2015) among others. 
 The data include 256 countries and overseas territories. 
 One country, Vatican, is dropped from the sample because it is smaller than the 30 arc-second cell. 
-In addition, 75 countries and territories are also dropped from the sample as real GDP data is unavailable for all years from 1992 to 2013.
-Excluding the three parent states of unrecognized states (Georgia, Azerbaijan, and Moldova), our base sample thus consists of 177 countries/territories in total.
+In addition, 75 countries and territories are also dropped from the sample as real GDP data is unavailable for all years from 1992 to 2013, the sample period of nighttime light data.
+Excluding the three parent states of unrecognized states (Azerbaijan, Georgia, and Moldova), our base sample thus consists of 177 countries/territories in total.
 
 \subsection{Boundaries for unrecognized states}
+To recover economic growth rates in unrecognized states, we also need to aggregate nighttime light data into the level of these breakaway territories. The spatial data sources for the boundaries of unrecognized states differ by each:
+\paragraph{Nagorno-Karabakh and Azerbaijan proper}
+The data on the internationally recognized boundary of Azerbaijan (which includes the western and southern boundaries of Nagorno-Karabakh) is obtained from ACASIAN (2014). This dataset was created in conjunction with the Institute of Geography at Russian Academy of Sciences, with the official map definitive as of the 1989 Soviet Census. 
 
-\paragraph{Transnistria and Moldova proper} 
-The boundaries of Transnistria and Moldova proper come from the first-level administrative boundary data from GADM (2018). 
-The actual territory of Transnistria, however, differs from the official boundary between Transnistria and the rest of Moldova. 
-Transnistria occupies some small parts of Moldova proper while Moldova controls some small parts of Transnistria (Tchepalyga\ 1997, p.\ 31). 
-However, the spatial data on the exact boundary between the two is unavailable. 
-Consequently, we use the official boundary as an approximation.
+The data on the 1994 ceasefire line that separates Nagorno-Karabakh from Azerbaijan proper comes from the map of Nagorno-Karabakh provided by the Armenian Ministry of Foreign Affairs (2018), digitized for this study.%
+\footnote{
+	The data, together with the digitization protocol and the replication code, is available at a GitHub repository: \verb!github.com/mkudamatsu/data_karabakh-map!
+}
+
+The 1994 ceasefire line acts as the boundary of effectively controlled areas of Nagorno-Karabakh until today. Consequently, the data used in this study correctly delineates Nagorno-Karabakh to the extent of accuracy in the original map and the digitization process.
 
 \paragraph{Abkhazia, South Ossetia and Georgia proper}  
-The spatial data on the boundaries of Abkhazia, South Ossetia, and Georgia proper is obtained from ACASIAN (2014).%
+The spatial data on the boundaries of Abkhazia, South Ossetia, and Georgia proper is also obtained from ACASIAN (2014).%
 \footnote{
-	We do not use GADM (2018) because South Ossetia does not exist in the official subdivisions of Georgia.
+	We do not use GADM (2018) because South Ossetia does not exist in the official subdivisions of Georgia today.
 	} 
-This dataset was created in conjunction with the Institute of Geography at Russian Academy of Sciences, with the official map definitive as of the 1989 Soviet Census.
 
-The Soviet-era boundaries accurately delineate the territories controlled by Abkhazia and South Ossetia after 2008 only, however. As a result of the wars of secession in 1991--1992, the north-east of Abkhazia (Upper Kodor Gorge) was under the control of Georgia proper (Tsutsiev 2014: Map 43). 
-For South Ossetia, villages with Georgian residents were under the control of Georgia proper (Tsutsiev 2014: Map 42). 
-In 2008, the defeat of Georgia against Russia resulted in the expulsion of the Georgian forces entirely from the Soviet-era territory of Abkhazia (Schwirtz 2008) and South Ossetia (O'Loughlin et al.\ 2014: 428).  
+
+The Soviet-era boundaries accurately delineate the territories controlled by Abkhazia and South Ossetia after 2008 only, however. As a result of the wars of secession in 1991--1992, the north-east of Abkhazia (Upper Kodor Gorge) was under the control of Georgia proper (Tsutsiev 2014:Map 43). 
+For South Ossetia, villages with Georgian residents were under the control of Georgia proper (Tsutsiev 2014:Map 42). 
+In 2008, the defeat of Georgia against Russia in the five-day war led to the expulsion of the Georgian forces entirely from the Soviet-era territory of Abkhazia (Schwirtz 2008) and South Ossetia (O'Loughlin et al.\ 2014:428).  
 
 Since the data is unavailable for the pre-2008 boundaries of effectively controlled areas by Abkhazia and South Ossetia, this study uses the Soviet-era boundaries throughout the sample period of 1992--2013.
 
-\paragraph{Nagorno-Karabakh and Azerbaijan proper}
-The data on the internationally recognized boundary of Azerbaijan (which includes the western and southern boundaries of Nagorno-Karabakh) is also obtained from ACASIAN (2014). The data on the 1994 ceasefire line that separates Nagorno-Karabakh from Azerbaijan proper is created by the author, based on the map of Nagorno-Karabakh provided by the Armenian Ministry of Foreign Affairs (2018).
+\paragraph{Transnistria and Moldova proper} 
+The boundaries of Transnistria and Moldova proper come from the first-level administrative boundary data from GADM (2018). 
 
-The 1994 ceasefire line acts as the boundary of effectively controlled areas of Nagorno-Karabakh until today. Consequently, the data used in this study correctly delineates Nagorno-Karabakh to the extent of accuracy in the original map and the digitization process by the author.
+The actual territory of Transnistria, however, differs from the official boundary between Transnistria and the rest of Moldova. 
+Transnistria occupies some small parts of Moldova proper while Moldova controls some small parts of Transnistria (Tchepalyga\ 1997:31). 
+However, the spatial data on the exact boundary between the two is unavailable. 
+Consequently, we use the official boundary as an approximation.
 
 \section{Methodology}
 % Model of real GDP
