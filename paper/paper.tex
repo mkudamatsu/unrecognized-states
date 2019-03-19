@@ -40,7 +40,7 @@
 \newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
 
 \usepackage{bigfoot} % Allow \verb in a footnote
-
+\usepackage{cprotect} % Allow \verb in title
 % Make figure captions left-aligned: see https://tex.stackexchange.com/questions/275131/align-caption-to-the-left
 \usepackage{caption} 
 \captionsetup{justification=raggedright,singlelinecheck=false}
@@ -48,7 +48,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
-\title{Observing Economic Growth in Unrecognized States with Nighttime Light \thanks{I thank Elizaveta Kugaevskaia for her superb research assistance on this project. Financial support from Japan Society for the Promotion of Science (JSPS Kakenhi Grant Number 17K13730) is gratefully acknowledged.} }
+\cprotect\title{
+	Observing Economic Growth \\in Unrecognized States \\with Nighttime Light 
+	\cprotect\thanks{%
+		I thank Elizaveta Kugaevskaia for her superb research assistance on this project. 
+		Financial support from Japan Society for the Promotion of Science (JSPS Kakenhi Grant Number 17K13730) is gratefully acknowledged. 
+		The replication files are available at the GitHub repository for this paper: \verb!github.com/mkudamatsu/unrecognized_states!
+		} 
+	}
 \author{Masayuki Kudamatsu \thanks{Osaka School of International Public Policy, Osaka University. Email: m.kudamatsu@gmail.com}}
 \date{\today}
 \maketitle
@@ -519,7 +526,7 @@ The same remarks apply to its parent country, Moldova, suggesting that the impac
 
 \begin{thebibliography}{99}
 \bibitem{} ACASIAN (Australian Consortium for the Asian Spatial Information and Analysis Network). 2014. \textit{Russian Federation and Former Soviet Republics Research GIS Databases}. http://acasian.com (accessed on 20 February, 2018).
-\bibitem{} Acemoglu, Daron, Camilo García-Jimeno, and James A. Robinson. 2015. ``State Capacity and Economic Development: A Network Approach.'' \textit{American Economic Review}, 105(8): 2364--2409.
+\bibitem{} Acemoglu, Daron, Camilo Garcï¿½a-Jimeno, and James A. Robinson. 2015. ``State Capacity and Economic Development: A Network Approach.'' \textit{American Economic Review}, 105(8): 2364--2409.
 \bibitem{} Acemoglu, Daron, Suresh Naidu, Pascual Restrepo, and James A. Robinson. 2019. ``Democracy Does Cause Growth.'' \textit{Journal of Political Economy}, 127(1): 47--100.
 \bibitem{} Alesina, Alberto, Stelios Michalopoulos, and Elias Papaioannou. 2016. ``Ethnic Inequality.'' \textit{Journal of Political Economy}, 124(2): 428--488.
 \bibitem{} Armenian Ministry of Foreign Affairs. 2018. ``Nagorno-Karabakh Republic (Artsakh).'' https://www.mfa.am/en/nagorno-karabakh-issue/ (accessed on 20 April, 2018).
