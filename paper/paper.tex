@@ -40,31 +40,344 @@
 \newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
 
 \usepackage{bigfoot} % Allow \verb in a footnote
+\usepackage{cprotect} % Allow \verb in title
+% Make figure captions left-aligned: see https://tex.stackexchange.com/questions/275131/align-caption-to-the-left
+\usepackage{caption} 
+\captionsetup{justification=raggedright,singlelinecheck=false}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
-\title{Estimating Output Loss due to being Unrecognized as States}
-\date{}
+\cprotect\title{
+	Observing Economic Growth \\in Unrecognized States \\with Nighttime Light 
+	\cprotect\thanks{%
+		I thank Elizaveta Kugaevskaia for her superb research assistance on this project. 
+		Financial support from Japan Society for the Promotion of Science (JSPS Kakenhi Grant Number 17K13730) is gratefully acknowledged. 
+		The replication files are available at the GitHub repository for this paper: \verb!github.com/mkudamatsu/unrecognized_states!
+		} 
+	}
+\author{Masayuki Kudamatsu \thanks{Osaka School of International Public Policy, Osaka University. Email: m.kudamatsu@gmail.com}}
+\date{\today}
 \maketitle
 
+\begin{abstract}
+This paper uses the satellite images of nighttime light to estimate economic growth rates in four unrecognized states of the former Soviet Union: Nagorno-Karabakh in Azerbaijan, Abkhazia and South Ossetia in Georgia, and Transnistria in Moldova. We then compare these estimates against those similarly obtained for parent states to gauge the impact of non-recognition as sovereign states on economic activities. The estimated economic growth rates do not differ much between the breakaway territories and their parent states, suggesting that the economic impact of non-recognition as states may be very limited.
+\end{abstract}
+
+\newpage
+
 \section{Introduction}
-\section{Data}
+% Introducing frozen conflicts
+Back in 1991, the Soviet Union broke up into fifteen of its constituent republics. 
+Immediately after, wars of secession broke out in three of these newly independent states: Azerbaijan, Georgia, and Moldova.
+Secessionists, consisting of minority ethnic groups in each republic, succeeded in taking over their territories and declared their independence from their parent states. 
+These breakaway territories include Nagorno-Karabakh in Azerbaijan, Abkhazia and South Ossetia in Georgia, and Transnistria in Moldova (Figure \ref{map}). 
+However, not a single country around the world recognized them as sovereign states. 
+These four ``states'' remain internationally unrecognized until today.%
+\footnote{%
+	Since 2008, Russia and a few other countries have recognized Abkhazia and South Ossetia as sovereign states, though.
+} 
+
+This paper attempts to estimate economic growth rates in these four unrecognized states of the former Soviet Union, with the aim of understanding the impact of non-recognition as a sovereign state on economic activities. 
+
+Unrecognized states are not so uncommon. 
+Somaliland in northwest Somalia has not been recognized by any country since 1991. 
+Taiwan and Northern Cyprus have been recognized only by a few countries since the 1970s. 
+Since 2008, Kosovo has been recognized as independent by many countries, but not by the others including its parent country Serbia.
+More recently, the 2014 crisis in Ukraine resulted in the creation of two unrecognized states in its eastern area: Luhansk and Donetsk.
+It is therefore important to understand the consequences of being unrecognized as sovereign states because not an ignorable number of people now live in such pseudo states today.%
+\footnote{
+	There were also short-lived unrecognized states in the past: Katanga in Zaire (today's Democratic Republic of Congo) during 1960--63, Republika Srpska Krajina in Croatia during 1991--95, Republika Srpska in Bosnia-Herzegovina during 1992--95, and Chechnya in Russia during 1996--99.
+	}
+
+The empirical challenge for such endeavor is the lack of data. International organizations such as the World Bank do not provide any data for unrecognized states. 
+The limited state capacity of these territories implies that there is no official statistics. 
+Any surveys conducted in their parent countries exclude these territories from the sampling procedure.%
+\footnote{%
+	As an example, the Demographic and Health Survey conducted in Moldova in 2005 excludes the entire Transnistria from its sample (National Scientific and Applied Center for Preventive Medicine 2006:xxvi).
+} 
+To overcome this data limitation, the present study uses the satellite images of nighttime light for the period 1993--2013 to recover the unobserved annual economic growth rates of the four unrecognized states in the former Soviet Union.
+
+Specifically, we first estimate the elasticity of real GDP with respect to nighttime light intensity, conditional on country and year fixed effects, from the annual panel data of 177 countries around the world. 
+Using this elasticity estimate and the estimated year fixed effects, we then recover the annual growth rates of real GDP for unrecognized states from their nighttime light intensity. 
+We finally compare these recovered real GDP growth rates to the ones similarly estimated for parent countries. 
+Under the assumption that parent countries provide a valid counterfactual, the difference in the annual growth rates can be interpreted as the impact of being unrecognized as sovereign states. 
+
+We find that the impact of unrecognized states is very limited in all of the four cases. 
+The recovered annual economic growth rates do not differ much between the breakaway territories and their parent states.
+
+This study relates to four strands of the literature. 
+First, the recent literature on the role of states in economic development focuses on the impacts of state capacity (Besley and Persson 2011, Acemoglu et al.\ 2015). 
+However, state capacity is only one side of sovereign states. 
+The other side is international recognition, which has been ignored by economists. 
+This study fills this gap in the literature.
+
+Second, the issue of unrecognized states has received no attention in the emerging literature on the impacts of conflicts.%
+\footnote{
+	See Blattman and Miguel (2010:Section 4) and Bauer et al.\ (2016) for surveys.
+}  
+However, the lack of international recognition is one of the likely consequences from those civil wars in which one side attempts to secede from the parent country. 
+By filling this gap in the literature, our study makes two contributions. 
+
+The literature finds that output loss due to conflicts tends to be temporary (Davis and Weinstein 2002; Miguel and Roland 2011; Cerra and Saxena 2008).%
+\footnote{
+	Mueller (2012), commenting on the methodology in Cerra and Saxena (2008), shows that output persistently drops after the \textit{beginning} of civil conflicts by over 15\%.
+} 
+These findings, however, may suffer from sample selection bias, as pointed out by Blattman and Miguel (2010): the data is unavailable for those countries that severely suffer from civil conflicts.   
+Unrecognized states are an example of the out-of-the-sample cases of post-conflict situations. 
+Consequently, understanding the consequences of unrecognized states will help us paint the full picture of the impacts of civil conflicts. 
+
+The literature on civil conflicts also pays little attention to the role of political institutions in post-conflict recovery.%
+\footnote{
+	An exception is Casey et al.\ (2012), who look at the impact of institutional building in post-conflict Sierra Leone.
+}
+Unrecognized states are a form of political institutions relevant for post-conflict periods. 
+The present study thus contributes to the deepening of our understanding of the role of political institutions in post-conflict recovery.
+
+The third literature that our study relates to is the political science literature on unrecognized states (King 2001, Lunch 2002, Kolsto 2006, O'Loughlin et al.\ 2014, Smolnik 2016, among others). 
+In particular, a recent strand of this literature points out that seeking international recognition creates an incentive for politicians in unrecognized states to promote state-building and democratic institutions (Caspersen 2008, 2011; Blakkisrud and Kolsto 2011; Kolsto and Blakkisrud 2012).
+Our study complements this literature by uncovering economic consequences of non-recognition which can be interpreted as an indirect impact via state-building and democracy.%
+\footnote{
+	Witmer and O'Loughlin (2011) also use nighttime light data to gauge the impact of wars in towns in Georgia and South Ossetia. Our study differs in the coverage of study areas and in the recovery of economic growth rates from light data. 
+} 
+
+Finally, our study also relates to those who use nighttime light to observe economic performance for countries with poor data: Michalopoulos and Papaioannou (2013, 2014) and Storeygard (2016) for sub-national areas in Africa; Lee (2018) for North Korea. 
+
+The rest of the paper is organized as follows. Section \ref{background} overviews the issue of unrecognized states in the former Soviet Union. Section \ref{theory} provides theoretical arguments on how non-recognition as a sovereign state can affect economic activities. Sections \ref{data} and \ref{methodology} introduce the datasets and methodology that we employ to uncover economic growth rates in unrecognized states. Section \ref{results} reports our findings. The last section concludes with discussions on the applicability of our findings to other unrecognized states.
+
+\section{Background}\label{background}
+In this section, we provide a brief overview of (1) the international law origin of unrecognized states; (2) causes and consequences of the wars of secession after the collapse of the Soviet Union; (3) state-building efforts, political institutions and economic situations in the four unrecognized states since then.
+\subsection{State Recognition in International Law}\label{intl_law}
+International law requires a sovereign state to possess (i) a permanent population, (ii) a defined territory, (iii) government, and (iv) capacity to enter into inter-state relations.%
+\footnote{
+	These four qualifications for a sovereign state were set out in Article I of the Montevideo Convention on Rights and Duties of States, a treaty signed by countries in the American continent in 1933.
+	}
+However, it is other sovereign states that judge whether a candidate state satisfies these four requirements (Ryngaert and Sobrie 2011472--473).
+Consequently, a sovereign state requires recognition by other states.
+
+%On the other hand, a peremptory norm, or \textit{jus cogens}, in international law prohibits the recognition of entities as states if they come into being through the violation of international law such as massive violations of human rights.
+
+%The break-up of Yugoslavia in 1991, starting with Slovenia and Croatia declaring independence, made Western Europe set new standards for recognizing states.%
+%\footnote{
+%	These new standards are set out in the Declaration on the Guidelines on the Recognition of New States in Eastern Europe and in the Soviet Union on 23 December, 1991.
+%} 
+%Most significantly, these standards include the commitment to democratic government by the new entities.
+
+
+ 
+
+  
+\subsection{Causes of Secession}
+Ethnic conflicts are the underlying causes of secession in all the four cases of unrecognized states in the former Soviet Union.
+%Ethnicity was salient in the Soviet Union: every citizen had to register their ethnicity at the age of 16 (de Waal 2013146).
+During the lead-up to the collapse of the Soviet Union in 1991, Azerbaijan, Georgia, and Moldova all enacted nationalistic policies that put minority ethnic groups in a disadvantaged situation. 
+These ethnic minorities no longer wanted to be part of the parent countries that declared independence from the Soviet Union.
+Consequently, the wars of secession broke out.
+
+\paragraph{Nagorno-Karabakh in Azerbaijan}
+Nagorno-Karabakh is a mountainous enclave of Armenian people in the west of Azerbaijan. 
+Armenians are culturally different from Azerbaijanis in terms of religion (Armenian Orthodox Christianity versus Islam, mostly Shia) and language (Armenian vs Turkish). 
+
+During the Soviet days, the Azerbaijani authority encouraged the migration of Azeris into Nagorno-Karabakh.%
+\footnote{
+	The population of Azerbaijanis in Nagorno-Karabakh jumped up from 13,000 in 1926 to 37,000 in 1979 while the corresponding figures for Armenians are 117,000 and 123,000, respectively (de Waal 2013:153--154).
+	} 
+The Azeri authority also ignored the Armenian culture: there was no Armenian-language television channel; the history of Armenia not taught in Armenian-language schools; medieval Armenian churches closed and crumbling (de Waal 2013:154).  
+
+These ethnic tensions rose in the last years of the Soviet rule. 
+The local government of Nagorno-Karabakh declared independence two days after Azerbaijan declared its independence from the Soviet Union on August 30, 1991. 
+The vast majority of people in Nagorno-Karabakh voted yes in a referendum on independence on December 10. 
+The Azeri government did not accept the secessionist move by Karabakh Armenians, resulting in the war of secession from 1992 to 1994.
+
+\paragraph{Abkhazia and South Ossetia in Georgia}
+%Abkhazia
+Abkhazia is a western region of Georgia. Abkhazians speak a language unrelated to its parent country's main language, Georgian. 
+During the Soviet era, Abkhazia received an enormous influx of Georgians: the 1989 census showed that Abkhazians accounted for only 18\% of the population (Minority At Risk 2006a).
+Fearing the disappearance of themselves as an ethnic group, Abkhazians attempted to secede from Georgia and to join Russia in 1957, 1967, and 1978, but the Soviet authority in Moscow rejected these requests (Hewitt 1993, Lakoba 1995).
+
+%South Ossetia
+South Ossetia is a mountainous district in the north of Georgia. 
+It is inhabited mostly by Ossetians whose language is also unrelated to Georgian. 
+Unlike Abkhazians, South Ossetians co-lived with Georgians peacefully throughout the Soviet era.
+
+%Georgian nationalism
+Since the late 1980s, however, a nationalist movement led by Zviad Gamsakhurdia, whose party and its coalition partners defeated the Communist Party in the multiparty elections in 1990, instigated ethnic conflict with Ossetians and intensified it with Abkhazians.
+The government of Georgia made the Georgian language as the sole official language of the country and banned regional parties from national elections (Minorities At Risk 2006c).
+These policies drove Abkhazia and South Ossetia to pursue their secession from Georgia.
+
+\paragraph{Transnistria in Moldova}
+Transnistria is an eastern region of Moldova. While the majority of Moldovans speak Romanian, the region is mostly inhabited by Russian-speaking citizens (primary Russians and Ukranians).% 
+\footnote{
+	The following account is based on Minorities At Risk (2006c). See King (2000:Chapter 9) for more detail on the breakaway of Transnistria from Moldova.
+} 
+
+In 1989, the Moldovan legislature passed the law that made Romanian the only official state language and required all officials to demonstrate proficiency in Romanian. 
+In response to this nationalistic policy, Russian-speaking residents in Transnistria declared independence from Moldova in 1990, leading to the war of secession in 1992.%
+\subsection{Consequences of Wars of Secession}
+The wars of secession were short-lived except for Nagorno-Karabakh in Azerbaijan. 
+Secessionists won largely because the newly independent republics of the former Soviet Union lacked in military capacity: the Soviet-era military largely consisted of Russians who returned to Russia after the dissolution of the Soviet Union.%
+\footnote{
+	For example, de Waal (2014:219--222) mentions Azerbaijani's military chaos as one of the reasons for the victory of Nagorno-Karabakh.
+}
+
+In Nagorno-Karabakh, the war of secession continued from January 1992 to May 1994. The death toll estimate ranges from 17,000 to 25,000 (de Waal 2013:326--327). One significant consequence of the war is ethnic homogenization on both sides of the ceasefire line. 
+It is estimated that approximately 500,000 Azerbaijanis were displaced from the occupied part of Azerbaijan while 353,000 Armenians were displaced from the rest of Azerbaijan.%
+\footnote{
+	These numbers are based on Arif Yunusov's calculations, cited by de Waal (2013:327).
+}
+
+In Abkhazia, the war started with the invasion of Georgian troops into Abkhazia in August 1992. 
+By the ceasefire in September 1993, however, Abkhaz forces took control of its territory.
+The death toll is estimated to be 35,000 (Toal and O'Loughlin 2017:109), and almost all of 239,872 ethnic Georgians in Abkhazia, according to the 1989 census (International Crisis Group 2007:19), had been forcefully displaced. 
+As the 1989 census records the population of 535,634 in Abkhazia (ACASIAN 2014), the war damage was significant.
+
+South Ossetia declared independence in 1990. 
+In response, the Georgian forces attempted to seize the capital city of South Ossetia, Tskhinvali, in January and September 1991 and in June 1992, each time repelled by the Ossetian militias (Toal 2008:677).
+With Russia's intermediation, the ceasefire agreement was made in June 1992.
+Some 2,000 people died from the war (Toal and O'Loughlin 2017:109); 2,918 Ossetians were internally displaced; 10,000 Georgians in South Ossetia were also displaced to Georgia proper (Toal 2008:Table 1). 
+Compared to the 1989 census figures of 65,232 Ossetians and 28,544 Georgians in South Ossetia (Toal 2008:Table 1), these numbers suggest a significant war damage.
+
+In Transnistria with a population of 770,000 in 1989 (Blakkisrud and Kolsto 2011:194), the war was brief, from March to July 1992, with slightly over a thousand people killed and a limited number of people displaced (O'Loughlin et al.\ 2013). 
+
+\subsection{State Building}\label{state-building}
+% 1990s
+In the 1990s, all the four unrecognized states had limited state capacity.
+They provided permissive arenas for criminal enterprises (King 2001, Lynch 2002).
+Examples included arms trafficking in Transnistria (Dawisha 2014:340--350); uranium smuggling in South Ossetia (Bronner 2008).
+
+% State-building
+However, by the early 2000s, all the four unrecognized states had built up the state capacity to control their territory and to provide basic services to their population.%
+\footnote{
+	See King (2001). 
+	Caspersen (2008:119) points out that both Nagorno-Karabakh and Abkhazia have built ``the necessary organs of government, such as armed forces, police, and a court system'', and are now able to provide ``some basic public services, including education and health services.'' 
+}
+
+For Abkhazia and South Ossetia, the situation has changed since 2008, when their parent country Georgia was defeated against Russia in a five-day war. 
+As a consequence, the border control was tightened by the Russian army so that residents could no longer cross the borders of the two breakaway territories with Georgia proper.
+In addition, Russia, together with a few countries, recognized Abkhazia and South Ossetia as sovereign states (in retaliation for the recognition of Kosovo by many countries in the West earlier in the same year).
+
+Since then, both Abkhazia and South Ossetia have received a substantial budgetary support from Russia, which issues Russian passports to residents in these two unrecognized states.%
+\footnote{
+	International Crisis Group (2010) reports that Russia provided 60\% of the Abkhazian government budget in 2009.
+	Freedom House (2011) reports that the equivalent figure for South Ossetia reached 98\%.
+} 
+
+\subsection{Political Institutions}
+All the four unrecognized states have regularly held presidential and parliamentary elections with opposition candidates allowed to run for office.%
+\footnote{
+	See Blakkisrud and Kolsto (2011, 2012) for the detail.
+}
+Moreover, there have been turnover in national leadership.
+
+In Nagorno-Karabakh, Arkady Ghukasian, elected as President in 1997, stepped down to observe the presidential term limit (two five-year terms) in 2007. His designated successor, Bako Saakian, won the presidential elections with 85\% of the votes in 2007 and 66.7\% of the votes in 2012.
+
+In Abkhazia, the opposition candidate won the presidential election in 2004 despite Moscow's support for the incumbent who had been in office since 1994. 
+
+In South Ossetia, the first president Lyudvig Chibirov, elected in 1996, was defeated by Eduard Kokoity in the 2001 presidential election (Freedom House 2009).
+The parliament rejected an attempt by Kokoity's supporters to lift term limits for presidency in June 2011 (Freedom House 2012).
+While the Supreme Court annulled the 2011 presidential election, barring the winning opposition candidate from assuming office, the subsequent election in the following year saw Leonid Tibilov, unrelated to the previous president, sworn in office.%
+\footnote{
+	In 2017, President Tibilov failed to be re-elected; opposition leader Anatoly Bibilov won the election (Freedom House 2018).
+} 
+
+In Transnistria, the long-serving president Igor Smirnov since 1991 was defeated by Yevgeny Shevchuk in the 2011 presidential election (Toal and O'Loughlin 2017:110).%
+\footnote{
+	Shevchuk in turn was defeated by Vadim Krasnoselsky in the 2016 presidential election (Freedom House 2017).
+	}
+
+%\subsection{Nagorno-Karabakh}
+%In 1923, the Soviet Union's authority drew the border of Nagorno-Karabakh Autonomous Oblast from scratch, based on their understanding of where Armenians resided within Azerbaijan.%
+%\footnote{
+%	An autonomous oblast is a district with some degree of autonomy from the government of a constituent republic of the Soviet Union. 
+%} 
+%The Soviet leaders made Nagorno-Karabakh part of Azerbaijan, rather than of Armenia, for two reasons, according to de Waal (2013:144--145). First, Moscow needed to appease Azeri politicians to control their oil fields in the Caspian Sea. Second, Armenians in Nagorno-Karabakh economically relied on the eastern part of Azerbaijan, and the communist ideal dictated that economic consideration should override ethnic integration.
+
+%The 1994 ceasefire line was drawn based on the territory that Karabakh's army occupied by the end of the war. It significantly differs from the Soviet-era boundary of Nagorno-Karabakh as Karabakh Armenians have occupied the large chunk of land in the south-west corner of Azerbaijan to be geographically contiguous with Armenia.
+
+\subsection{Economic Situations}\label{economic}
+% Summarize King 2001:535-538
+There is only sketchy information on economic situations in the four unrecognized states. King (2001:535-538) reports one of the rare accounts, based on his own interviews with local residents in 2000. 
+
+Residents in Nagorno-Karabakh earned a living from subsistence farming or resale of goods imported from Iran and Armenia, with the export of wood to Armenia becoming a booming business. 
+
+In Abkhazia, important sources of revenue for residents are the harvesting of tangerines and hazelnuts and the trade in scrap metal. 
+
+South Ossetia had little functioning industry or export-oriented agriculture, with thriving trade activities along the highway linking Georgia to the south with Russia to the north. 
+
+Transnistria, the industrial hub of Moldova during the Soviet era with one of the best steel mills in the Soviet Union, ``exported'' construction materials, chemicals, ferrous metals, and electrical energy to Moldova proper, and steel and small arms to the world.
+
+
+%Information is scant on economic conditions in Nagorno-Karabakh since the 1994 ceasefire. 
+%International Crisis Group (2005:14--15) provides a rare account of Karabakh's economy as follows. 
+%\begin{itemize}
+%\item Entrepreneurs have been engaged in profitable scrap metal businesses by dismantling infrastructure, housing and other pre-war structures for the resale of metal, bricks and building materials in the occupied territory of Azerbaijan.
+%\item Privatization of land and state enterprises has largely been completed. All residents outside the capital city of Stepanakert received 0.6 hectares of arable land. Private companies account for 80\% of the output. 
+%\item Under-employment is widespread among rural residents although officials claim that the unemployment rate was 5.6\% in 2003. In 2005, the government started providing the unemployed with 60\% of the minimum wage.
+%\item The government encourages child birth through various benefits for children: large families receive free electricity and books; couples with three children or more receive cash grants; and those with six children or more are given new homes.
+%\item Income inequality is growing. In a survey of 1,000 by Stepanakert Press Club in October 2003, 40.5\% of the respondents answered that they lived better than five years ago while 57.6\% said their life got worse or didn't change.
+%\end{itemize}
+
+%On the other hand, Azerbaijan proper has experienced economic growth thanks to oil exports. 
+%In 2006, the oil pipeline was opened from Baku, the capital city, to Turkey via Georgia, contributing to the world's fastest economic growth from 2005 to 2008 (de Waal 2013:291--292). 
+%World Bank (2006:Table 1) reports that the percentage of people living in poverty fell from 44.6\% in 2002 to 24.0\% in 2005.
+%This rapid decline is not concentrated in Baku and other urban areas but also seen in rural areas.
+ 
+% \subsection{Abkhazia}
+%International Alert (2004:123) reports that GDP per capita in Abkhazia was roughly estimated to be \$350 in 2001, dropped from \$1333 in 1988, with the population dependent on subsistence farming and humanitarian aid for survival.
+ 
+ %\subsection{South Ossetia}
+%Areshidze (2002), cited by International Crisis Group (2004:11), estimates that GDP per capita in South Ossetia was \$250 in 2002.
+
+%%%%%%%%%%%% THEORY %%%%%%%%%%%%
+\section{Economic Consequences of Non-recognition}\label{theory}
+The failure to be recognized as a sovereign state by international community may adversely affect economic development for at least two reasons.
+First, non-recognition may discourage foreign direct investment (Kolsto 2006:729). 
+There is uncertainty over whether legal contracts in unrecognized states are internationally binding. 
+Investment in unrecognized states could also deny access to markets in their parent countries.
+Second, the military expenditure may crowd out government investments in public goods.%
+\footnote{
+	In Nagorno-Karabakh, 65 out of 1,000 inhabitants are soldiers, surpassing almost all countries around the world (International Crisis Group 2005:9). 
+	As of 2000, Transnistria had 5,000 to 10,000 soldiers; South Ossetia 2,000; Abkhazia 5,000 (International Institute for Strategic Studies 2000).
+}
+Parent countries can anytime invade unrecognized states to restore their control over the lost territory, as Georgia did to South Ossetia in 2008.
+
+On the other hand, non-recognition may encourage the government to promote economic development. 
+As discussed in Section \ref{intl_law}, a permanent population is one of the requirements to be a sovereign state according to international law.
+If residents flee their unrecognized state for a better life abroad, it becomes harder to satisfy this requirement.
+Consequently, if the objective of politicians in unrecognized states is the international recognition of their territory as a state, they should have an incentive to improve the living standards of their residents (Hirose 2014). 
+
+This incentive may have been intensified after the United Nations introduced the Standards Before Status policy in 2003 to resolve the conflict over another unrecognized state, Kosovo.%
+\footnote{
+	As a result of the Kosovo War in 1998--1999, Kosovo was effectively independent from Serbia-Montenegro though its official status was part of the parent country.
+	Later in 2008, Kosovo declared independence, and many countries, if not all, recognized her as a sovereign state. 
+} 
+The policy stated that Kosovo needed to build a functional state before the international community would recognize her as a sovereign state.
+Even though this policy applied to Kosovo only, the recent political science literature on unrecognized states (Caspersen 2008, 2011; Blakkisrud and Kolsto 2011; Kolsto and Blakkisrud 2012) argues that the desire for international recognition has prompted politicians in unrecognized states to undertake state-building and to build democratic institutions.%
+\footnote{
+	Caspersen (2008:120) reports the remarks of politicians in Abkhazia and Nagorno-Karabakh that their ``countries'' should be recognized because of the functioning state that they have built.
+	}
+To the extent that state-building (Besley and Persson 2011) and democracy (Acemoglu et al.\ 2019) affect economic development, seeking international recognition may thus lead to economic prosperity.
+
+It is therefore an empirical question whether being unrecognized as a sovereign state positively or negatively affects economic development.	
+
+\section{Data}\label{data}
+This section describes the datasets we use to recover economic growth rates in the four unrecognized states from satellite images of nighttime light.
 \subsection{Real GDP}
-We use the Penn World Table 9.0 (Freenstra et al.\ 2015), as the data source for real GDP. 
+We use the Penn World Table 9.0 (Freenstra et al.\ 2015) as the data source for real GDP. 
 Expenditure-side real GDP at chained PPPs in 2011 US dollars (the variable \textit{rgdpe}) is used because the variable is meant for comparing ``living standards across countries and across years'' (Freenstra et al.\ 2015, Table 1).
 
 % Comparison to WDI
 An alternative data source for real GDP is World Development Indicators (World Bank 2018). 
 We prefer the Penn World Table, however, because since version 8 it makes real GDP cross-sectionally comparable in multiple years. 
-The cross-sectional comparability in the World Development Indicators is only ensured for the latest international price survey year (2010 for the latest version); the farther away from this reference year, the less comparable its data on real GDP across countries (see Pinkovskiy and Sala-i-Martin 2016, sections 2.1-2.2, for detail).
+The cross-sectional comparability in the World Development Indicators is only ensured for the latest international price survey year (2010 for the latest version); the farther away from this reference year, the less comparable its data on real GDP across countries (see Pinkovskiy and Sala-i-Martin 2016, sections 2.1--2.2, for detail).
 As we exploit the variation in nighttime light not only within each country but also within each year, cross-sectional comparability is important.
 
 \subsection{Nighttime light}
 The data source for nighttime light is the DMSP-OLS Nighttime Lights Time Series, Version 4 (National Geophysical Data Center 2015). 
-It provides annual panel data of nighttime light intensity at the 30 arc-second cells across the world. 
+It provides annual panel data (1992--2013) of nighttime light intensity at the 30 arc-second cells across the world. 
 The value of light intensity ranges from 0 to 63, which is not comparable across years due to the aging and replacement of satellite sensors. 
 See Henderson et al.\ (2012) among others for more detail about the dataset.
+
 Following Hodler and Raschky (2014), who aggregate light data into the sub-national level, we take the average of all the cell-level values within each country/territory as a measure of light intensity at the country/territory level.
 
 % Validation
@@ -78,69 +391,324 @@ To aggregate nighttime light intensity at the 30 arc-second cell level into the 
 We use GADM (2018), following Alesina et al.\ (2016) and Dreher et al.\ (2015) among others. 
 The data include 256 countries and overseas territories. 
 One country, Vatican, is dropped from the sample because it is smaller than the 30 arc-second cell. 
-In addition, 75 countries and territories are also dropped from the sample as real GDP data is unavailable for all years from 1992 to 2013.
-Excluding the three parent states of unrecognized states (Georgia, Azerbaijan, and Moldova), our base sample thus consists of 177 countries/territories in total.
-\section{Methodology}
+In addition, 75 countries and territories are also dropped from the sample as real GDP data is unavailable for all years from 1992 to 2013, the sample period of nighttime light data.
+Excluding the three parent states of unrecognized states (Azerbaijan, Georgia, and Moldova), our base sample thus consists of 177 countries/territories in total.
+
+\subsection{Boundaries for unrecognized states}
+To recover economic growth rates in unrecognized states, we also need to aggregate nighttime light data into the level of these breakaway territories. The spatial data sources for the boundaries of unrecognized states differ by each. Figure \ref{map} shows these boundary data.
+\paragraph{Nagorno-Karabakh and Azerbaijan proper}
+The data on the internationally recognized boundary of Azerbaijan (which includes the western and southern boundaries of Nagorno-Karabakh) is obtained from ACASIAN (2014). This dataset was created in conjunction with the Institute of Geography at Russian Academy of Sciences, with the official map definitive as of the 1989 Soviet Census. 
+
+The data on the 1994 ceasefire line that separates Nagorno-Karabakh from Azerbaijan proper comes from the map of Nagorno-Karabakh provided by the Armenian Ministry of Foreign Affairs (2018), digitized for this study.%
+\footnote{
+	The data, together with the digitization protocol and the replication code, is available at a GitHub repository: \verb!github.com/mkudamatsu/data_karabakh-map!
+}
+
+The 1994 ceasefire line acts as the boundary of effectively controlled areas of Nagorno-Karabakh until today. Consequently, the data used in this study correctly delineates Nagorno-Karabakh to the extent of accuracy in the original map and the digitization process.
+
+\paragraph{Abkhazia, South Ossetia and Georgia proper}  
+The spatial data on the boundaries of Abkhazia, South Ossetia, and Georgia proper is also obtained from ACASIAN (2014).%
+\footnote{
+	We do not use GADM (2018) because South Ossetia does not exist in the official subdivisions of Georgia today.
+	} 
+
+
+The Soviet-era boundaries accurately delineate the territories controlled by Abkhazia and South Ossetia after 2008 only, however. As a result of the wars of secession in 1991--1992, the north-east of Abkhazia (Upper Kodor Gorge) was under the control of Georgia proper (Tsutsiev 2014:Map 43). 
+For South Ossetia, villages with Georgian residents were under the control of Georgia proper (Tsutsiev 2014:Map 42). 
+In 2008, the defeat of Georgia against Russia in the five-day war led to the expulsion of the Georgian forces entirely from the Soviet-era territory of Abkhazia (Schwirtz 2008) and South Ossetia (O'Loughlin et al.\ 2014:428).  
+
+Since the data is unavailable for the pre-2008 boundaries of effectively controlled areas by Abkhazia and South Ossetia, this study uses the Soviet-era boundaries throughout the sample period of 1992--2013.
+
+\paragraph{Transnistria and Moldova proper} 
+The boundaries of Transnistria and Moldova proper come from the first-level administrative boundary data from GADM (2018). 
+
+The actual territory of Transnistria, however, differs from the official boundary between Transnistria and the rest of Moldova. 
+Transnistria occupies some small parts of Moldova proper while Moldova controls some small parts of Transnistria (Tchepalyga\ 1997:31). 
+However, the spatial data on the exact boundary between the two is unavailable. 
+Consequently, we use the official boundary as an approximation.
+
+\section{Methodology}\label{methodology}
 % Model of real GDP
-We model real GDP in territory $i$ in year $t$, denoted by $y_{it}$, as follows:
+Following Henderson et al.\ (2012), we model real GDP in territory $i$ in year $t$, denoted by $y_{i,t}$, as follows:
 \begin{equation}\label{gdp}
-\ln(y_{it}) = \beta \ln(L_{it}) + \mu_i + \eta_t + \varepsilon_{it},
+\ln y_{i,t} = \beta \ln L_{i,t} + \mu_i + \eta_t + \varepsilon_{i,t},
 \end{equation}
-where $L_{it}$ is nighttime light intensity in territory $i$ in year $t$, $\mu_i$ the territory fixed effect, $\eta_t$ the year fixed effect, and $\varepsilon_{it}$ the error term.
+where $L_{i,t}$ is nighttime light intensity in territory $i$ in year $t$, $\mu_i$ the territory fixed effect, $\eta_t$ the year fixed effect, and $\varepsilon_{i,t}$ the error term.
 
 % Sample
-To estimate $\beta$, $\mu_i$, and $\eta_t$ in equation (\ref{gdp}) with OLS, we use the balanced panel of countries around the world from 1992 to 2013 so that we can avoid compositional bias in the estimation of territory and year fixed effects, $\mu_i$ and $\eta_t$. 
-The sample of countries excludes the parent countries of unrecognized states (i.e.\ Georgia, Azerbaijan, and Moldova) because we will validate our predicted values of real GDP against the actual real GDP in these three countries.
+We estimate equation (\ref{gdp}) with OLS, by using the balanced panel of countries around the world from 1992 to 2013. The balanced panel ensures no compositional bias in the estimation of year fixed effects, $\eta_t$, important parameters to recover $y_{i,t}$ for unrecognized states (see below). 
+The sample of countries excludes the parent countries of unrecognized states (i.e.\ Georgia, Azerbaijan, and Moldova) because we will validate our predicted values of real GDP growth against the actual real GDP growth rates in these three countries.
 Standard errors are clustered both at the territory level and at the year level with the multi-way cluster robust inference method (Cameron et al.\ 2011).%
-\footnote{Due to multicollinearity, we need to drop one dummy for either a country or a year when we estimate equation (\ref{gdp}). We drop the dummy for year 1992 because the country fixed effects estimates will be used to predict ``country'' fixed effects for unrecognized states and their parent countries, as described in the next paragraph.}
+\footnote{Due to multicollinearity, we need to drop one dummy for either a country or a year when we estimate equation (\ref{gdp}). We drop the dummy for year 1992.}
 
-% Model of country fixed effects
-To predict $y_{it}$ for unrecognized states (and their parent countries dropped from the sample) from equation (\ref{gdp}), we need to recover territory fixed effects, $\mu_i$. 
-We predict them with the average light intensity over the sample period of 1992-2013. 
-Specifically, with the same set of countries as the one for estimating equation (\ref{gdp}), we estimate the following equation with OLS:
-\begin{equation}\label{country_fe}
-\hat{\mu}_i = \alpha + \gamma \ln(\bar{L}_{i}) + \xi_{i},
-\end{equation}
-where $\hat{\mu}_i$ is the estimated territory fixed effect from equation (\ref{gdp}), $\bar{L}_{i}$ the average light intensity in territory $i$ over the sample period, and $\xi_i$ the error term.
+% Predict real GDP growth for unrecognized states
+For unrecognized state $i$, we cannot predict $y_{i,t}$ from equation (\ref{gdp}) because there is no straightforward way to estimate $\mu_i$. However, we can predict the annual growth rate of $y_{i,t}$, denoted by $\hat{g}_{i,t}$, by taking the first-difference of equation (\ref{gdp}) to remove $\mu_i$:
+\begin{eqnarray}\label{growth}
+\hat{g}_{i,t} 
+&=& \ln \hat{y}_{i,t} - \ln \hat{y}_{i, t-1} \nonumber \\
+&=& \hat{\beta} (\ln L_{i,t} - \ln L_{i,t-1}) + (\hat{\eta}_t - \hat{\eta}_{t-1}),
+\end{eqnarray}
+where $\hat{\beta}$ and $\hat{\eta_t}$ are the estimated $\beta$ and $\eta_t$ in equation (\ref{gdp}).
 
-% Prediction of real GDP
-Consequently, GDP per capita in unrecognized state $k$ in year $t$, denoted by $\hat{y}_{kt}$, will then be predicted as follows:
-\begin{equation}\label{prediction}
-\ln(\hat{y}_{kt}) = \hat{\beta} \ln(L_{kt}) + [\hat{\alpha} + \hat{\gamma} \ln(\bar{L}_{i})]  + \hat{\eta_t},
-\end{equation}
-where $\hat{\beta}$ and $\hat{\eta_t}$ are the estimated $\beta$ and $\eta_t$ in equation (\ref{gdp}), $\hat{\alpha}$ and $\hat{\gamma}$ the estimated $\alpha$ and $\gamma$ in equation (\ref{country_fe}).
+\section{Results}\label{results}
+\subsection{Fixed Effects Estimation Results}
+Table \ref{estimates} reports the results from estimating equation (\ref{gdp}). 
+The elasticity of real GDP with respect to nighttime light intensity is 0.35 (significantly different from zero at the 1\% level).
+This estimate is largely comparable to what the literature has found.%
+\footnote{
+	Henderson et al.\ (2012:Table 2) report the elasticity of 0.28 for the sample period of 1992--2008. Hodler and Raschky (2014:Appendix B) find the elasticity of 0.39 for subnational regions across the world for 1992--2009. Storeygard (2016:Table 1) obtains the elasticity of 0.25 for Chinese cities and prefectures for 1990--2005. 
+}   
+Year fixed effect estimates are also reported in Table \ref{estimates} as these values will be used to predict annual real GDP growth for unrecognized states. 
+Note that the adjusted R-squared is 0.99. 
+The model represented in equation (\ref{gdp}) explains almost all the variations in real GDP across countries and over time. 
 
-\section{Results}
-The results from estimating equation (\ref{gdp}) are reported in Table \ref{panel_results}. 
-The elasticity of real GDP with respect to nighttime light intensity is xxx (significant at the x\% level). 
-Year fixed effect estimates are also reported as these values will be used to predict real GDP for unrecognized states. 
+Plugging the coefficient estimates in Table \ref{estimates} together with annual nighttime light observations into equation (\ref{growth}) yields the predicted growth of real GDP for unrecognized states and their parent countries. 
+Figures \ref{aze} to \ref{tra} plot these predictions.
 
-Table \ref{country_fe_results} reports the results from estimating equation (\ref{country_fe}). 
-The country fixed effects estimated from equation (\ref{gdp})) are proportional to the average light intensity. 
-Figure \ref{country_fe_graph} plots the country fixed effects against the average light intensity. 
+\subsection{Validation}\label{validation}
+We first validate our methodology by comparing the predicted growth with the actual growth of real GDP from the Penn World Table for the three parent countries. 
 
-Plugging the coefficient estimates in Tables \ref{panel_results} and \ref{country_fe_results} as well as annual nighttime light observations into equation (\ref{prediction}) yields the predicted real GDP for unrecognized states and their parent countries. 
-We plot these predicted values over time in Figure \ref{predicted_gdp}. 
-As a validation exercise, we also plot the observed annual real GDP for the respective parent country, obtained from the Penn World Table. 
+% Azerbaijan
+Figure \ref{aze} shows the results for Azerbaijan.
+For years 1993--2004 and 2012--2013, the predicted growth rates do not align well with the actual growth rates, even showing a wrong sign in some years. 
+From 2005 to 2011, however, the predicted growth rates capture the trend in the actual growth rates. 
+The predicted growth generally underestimates the actual growth, probably because nighttime light does not capture the GDP growth due to world oil price hikes.%
+\footnote{
+	Azerbaijan has become an oil exporter over the sample period. 	
+	World oil prices surged during the period of 2005--2008. 
+}
 
-\section{Conclusions}
+% Georgia
+Figure \ref{geo} compares the actual growth rates with the predicted ones for Georgia. 
+Similarly to Azerbaijan, years 1993--2003 see discrepancies between the predicted and actual growth rates, with opposite signs in some years. 
+For years 2004--2013, however, the predicted growth roughly picks up the trend in the actual growth, with the magnitude also comparable.
 
+% Moldova
+Figure \ref{mda} shows the results for Moldova.
+For years 1993--2003 and 2011--2013, the predicted growth deviates from the actual growth, with a wrong sign in some years.
+Years 2004--2010 see the predicted growth approximate the actual growth relatively well.
 
-\begin{thebibliography}{99}                                                                                                %
-\bibitem{} Alesina, Alberto, Stelios Michalopoulos, and Elias Papaioannou. 2016. ``Ethnic Inequality.'' \textit{Journal of Political Economy}, 124(2): 428-488.
-\bibitem{} Bickenbach, Frank, Eckhardt Bode, Peter Nunnenkamp, and Mareike Soder. 2016. ``Night lights and regional GDP.'' \textit{Review of World Economics}, 152 (2), 425-447.                                                                                         
-\bibitem{} Cameron, A. Colin, Jonah B. Gelbach, and Douglas L. Miller. 2011. ``Robust Inference With Multiway Clustering.'' \textit{Journal of Business \& Economic Statistics}, 29(2): 238-249.
+% Summary
+Overall, the predicted growth around years 2004--2010 is trustworthy. 
+Outside this period, either our prediction methodology fails or the official GDP statistics from these countries is prone to errors.%
+\footnote{
+	The discrepancies in the 1990s may be due to the incapability of statistical offices in these countries to provide accurate GDP figures in the aftermath of the collapse of the socialist economic system. 
+	This explanation, however, does not account for why there are also discrepancies in the 2010s.
+}
+
+\subsection{Predicted Growth in Unrecognized States}
+We now compare the predicted annual growth rates between unrecognized states and their parent countries. 
+We use as a benchmark the predicted growth, not the actual growth, in the parent countries because the underlying data generating process is comparable.
+
+\paragraph{Nagorno-Karabakh}
+Figure \ref{nkr} shows the predicted annual real GDP growth rates for Nagorno-Karabakh in comparison to the predicted growth for its parent country, Azerbaijan. 
+For years 1993--1995, Karabakh's economy is estimated to have annually shrunk by 10\% or more, reflecting the damage from the war of secession from Azerbaijan. 
+From 1996 to 2004, the estimated economic growth was very volatile.
+For the period 2005--2011, where Azerbaijan's predicted growth rates trace the trend in the actual growth (see Section \ref{validation} above), Nagorno-Karabakh's economic growth exceeds 10\% (except for 2009 and 2011). 
+
+The growth rates for 2005--2011 exceed the predicted growth rates in Azerbaijan proper.
+It may just reflect the higher marginal product of capital per worker in Nagorno-Karabakh as the territory is poorer than the rest of Azerbaijan. 
+However, it may also suggest that the impact of being unrecognized as a sovereign state is minimal in terms of economic recovery from civil wars in the case of Nagorno-Karabakh.
+
+\paragraph{Abkhazia}
+Figure \ref{abk} shows the predicted annual real GDP growth for Abkhazia in comparison to the predicted growth in Georgia proper. 
+For years 1993--2003, the estimated economic growth rates are very volatile in Abkhazia though the ones in Georgia are equally volatile as well.
+For the period 2004--2013, when Georgia's predicted growth corresponds well with its actual growth (see Section \ref{validation} above), Abkhazia's growth rates are positive and largely comparable to Georgia's growth.   
+
+Overall, the impact of being unrecognized as a sovereign state appears to be minimal in the case of Abkhazia as long as Georgia proper is a valid counterfactual.
+
+\paragraph{South Ossetia}
+Figure \ref{sos} compares the predicted growth rates for South Ossetia with the ones for Georgia proper.
+For the period 2004--2013, when Georgia's predicted and actual growth rates co-move, South Ossetia's predicted growth is comparable to Georgia's.
+From 2010, South Ossetia outperforms Georgia in predicted growth, probably reflecting the consequences of South Ossetian War in 2008: Russia actively helps South Ossetia financially while Georgia loses its trade with Russia due to the strict border control by the Russian army (see Sections \ref{state-building} and \ref{economic}).
+
+As in Nagorno-Karabakh and Abkhazia, the impact of being unrecognized appears to be fairly limited for South Ossetia in comparison to Georgia.
+
+\paragraph{Transnistria}
+Finally, Figure \ref{tra} reports the predicted economic growth rates for Transnistria in comparison to those for Moldova proper. 
+Transnistria's predicted economic growth is volatile during the entire sample period, including years 2004--2010, when Moldova's predicted and actual real GDP growth rates correspond well to each other (see Section \ref{validation} above). 
+Its magnitude is overall smaller than the other three unrecognized states.
+The same remarks apply to its parent country, Moldova, suggesting that the impact of being unrecognized as a sovereign state is minimal in the case of Transnistria.
+
+\section{Conclusions}\label{conclusions}
+% Discuss external validity
+% Future research: precise border data and RD design
+This study focuses on four unrecognized states in the former Soviet Union. 
+Our findings suggest that the impact of non-recognition as sovereign states on economic activities is very limited. 
+
+Future research needs to examine whether this conclusion (1) is robust to more rigorous empirical research design and (2) applies to all the other unrecognized states. Constructing the precise data on the boundaries of unrecognized states will allow us to conduct spatial regression discontinuity design to provide credible estimates on the impact of non-recognition.%
+\footnote{
+	Spatial regression discontinuity design has been employed by Dell (2010), Michalopoulos and Papaioannou (2014), Berger et al.\ (2016), Burgess et al.\ (2018) among others.
+}
+Extending the analysis to include other unrecognized states outside the former Soviet Union will also help us under what conditions (such as the number of countries recognize them as states) the non-recognition as sovereign states have limited impacts on economic activities.
+
+\begin{thebibliography}{99}
+\bibitem{} ACASIAN (Australian Consortium for the Asian Spatial Information and Analysis Network). 2014. \textit{Russian Federation and Former Soviet Republics Research GIS Databases}. \verb!acasian.com! (accessed on 20 February, 2018).
+\bibitem{} Acemoglu, Daron, Camilo García-Jimeno, and James A. Robinson. 2015. ``State Capacity and Economic Development: A Network Approach.'' \textit{American Economic Review}, 105(8): 2364--2409.
+\bibitem{} Acemoglu, Daron, Suresh Naidu, Pascual Restrepo, and James A. Robinson. 2019. ``Democracy Does Cause Growth.'' \textit{Journal of Political Economy}, 127(1): 47--100.
+\bibitem{} Alesina, Alberto, Stelios Michalopoulos, and Elias Papaioannou. 2016. ``Ethnic Inequality.'' \textit{Journal of Political Economy}, 124(2): 428--488.
+\bibitem{} Armenian Ministry of Foreign Affairs. 2018. ``Nagorno-Karabakh Republic (Artsakh).'' \verb!www.mfa.am/en/nagorno-karabakh-issue! (accessed on 20 April, 2018).
+\bibitem{} Mamuka Areshidze. 2002. ``Current Economic Causes of Conflict in Georgia.'' Unpublished report for UK Department for International Development (DFID).
+\bibitem{} Bauer, Michal, Christopher Blattman, Julie Chytilova, Joseph Henrich, Edward Miguel, and Tamar Mitts. 2016. ``Can War Foster Cooperation?'' \textit{Journal of Economic Perspectives}, 30(3): 249--274.
+\bibitem{} Berger, Melissa, Gerlinde Fellner-Rohling, Rupert Sausgruber, and Christian Traxler. 2016. ``Higher Taxes, More Evasion? Evidence from Border Differentials in TV License Fees.'' \textit{Journal of Public Economics}, 135: 74--86.
+\bibitem{} Besley, Timothy, and Torsten Persson. 2011. \textit{Pillars of Prosperity : The Political Economics of Development Clusters}. Princeton University Press.
+\bibitem{} Bickenbach, Frank, Eckhardt Bode, Peter Nunnenkamp, and Mareike Soder. 2016. ``Night lights and regional GDP.'' \textit{Review of World Economics}, 152 (2), 425--447.
+\bibitem{} Blakkisrud, Helge, and Pal Kolsto. 2011. ``From Secessionist Conflict Toward a Functioning State: Processes of State- and Nation-Building in Transnistria.'' \textit{Post-Soviet Affairs}, 27(2): 178--210.
+\bibitem{} Blakkisrud, Helge, and Pal Kolsto. 2012. ``Dynamics of de Facto Statehood: The South Caucasian de Facto States between Secession and Sovereignty.'' \textit{Southeast European and Black Sea Studies}, 12(2): 281--298.
+\bibitem{} Blattman, Christopher, and Edward Miguel. 2010. ``Civil War.'' \textit{Journal of Economic Literature}, 48(1): 3--57.      
+\bibitem{} Bronner, Michael. 2008. \textit{100 Grams (and Counting...): Notes from the Nuclear Underworld}. Cambridge, MA: Belfer Center for Science and International Affairs, Harvard Kennedy School.       
+\bibitem{} Burgess, Robin, Francisco J.M. Costa, and Benjamin Olken. 2018. ``Wilderness Conservation and the Reach of the State: Evidence from National Borders in the Amazon.'' NBER Working Paper, no. 24861.                                                                      
+\bibitem{} Cameron, A. Colin, Jonah B. Gelbach, and Douglas L. Miller. 2011. ``Robust Inference With Multiway Clustering.'' \textit{Journal of Business \& Economic Statistics}, 29(2): 238--249.
+\bibitem{} Casey, K., R. Glennerster, and E. Miguel. 2012. ``Reshaping Institutions: Evidence on Aid Impacts Using a Preanalysis Plan.'' \textit{The Quarterly Journal of Economics}, 127(4): 1755--1812.
+\bibitem{} Caspersen, Nina. 2008. ``Separatism and Democracy in the Caucasus.'' \textit{Survival}, 50(4): 113--136.
+\bibitem{} Caspersen, Nina. 2011. ``Democracy, Nationalism and (Lack of) Sovereignty: The Complex Dynamics of Democratisation in Unrecognised States.'' \textit{Nations and Nationalism}, 17(2): 337--356.
+\bibitem{} Caspersen, Nina. 2012. \textit{Unrecognized States : The Struggle for Sovereignty in the Modern International System}. Cambridge: Polity Press.
+\bibitem{} Dawisha, Karen. 2014. \textit{Putin?s Kleptocracy : Who Owns Russia?}. New York: Simon and Schuster.
+\bibitem{} Dell, Melissa. 2010. ``The Persistent Effects of Peru?s Mining Mita.'' \textit{Econometrica}, 78(6): 1863--1903.
+\bibitem{} de Waal, Thomas. 2013. \textit{Black Garden: Armenia and Azerbaijan through Peace and War} (Revised Edition). New York: New York University Press.
 \bibitem{} Dreher, Axel, Andreas Fuchs, Roland Hodler, Bradley C. Parks, Paul A. Raschky, and Michael J. Tierney. 2015. ``Aid on Demand: African Leaders and the Geography of China?s Foreign Assistance.'' CEPR Discussion Paper, 10170.
-\bibitem{} Feenstra, Robert C., Robert Inklaar, and Marcel P. Timmer. 2015. ``The Next Generation of the Penn World Table.'' \textit{American Economic Review}, 105(10): 3150-3182.
-\bibitem{} GADM. 2018. ``GADM Maps and Data (version 3.6).'' https://gadm.org (accessed February 7, 2019).
+\bibitem{} Feenstra, Robert C., Robert Inklaar, and Marcel P. Timmer. 2015. ``The Next Generation of the Penn World Table.'' \textit{American Economic Review}, 105(10): 3150--3182.
+\bibitem{} Freedom House. 1998. ``Transnistria.'' \textit{Freedom in the World 1998}. \verb!freedomhouse.org/report/freedom-world/1998/transnistria! (accessed on 26 June, 2017). 
+\bibitem{} Freedom House 2009. ``South Ossetia.'' \textit{Freedom in the World 2009}. \verb!freedomhouse.org/report/freedom-world/2009/south-ossetia! (accessed on 15 March 2019).
+\bibitem{} Freedom House 2011. ``South Ossetia.'' \textit{Freedom in the World 2009}. \verb!freedomhouse.org/report/freedom-world/2011/south-ossetia! (accessed on 15 March 2019).
+\bibitem{} Freedom House 2012. ``South Ossetia.'' \textit{Freedom in the World 2012}. \verb!freedomhouse.org/report/freedom-world/2012/south-ossetia! (accessed on 15 March 2019).
+\bibitem{} Freedom House 2015. ``South Ossetia.'' \textit{Freedom in the World 2012}. \verb!freedomhouse.org/report/freedom-world/2015/south-ossetia! (accessed on 15 March 2019).
+\bibitem{} Freedom House 2016. ``South Ossetia.'' \textit{Freedom in the World 2012}. \verb!freedomhouse.org/report/freedom-world/2016/south-ossetia! (accessed on 15 March 2019).
+\bibitem{} Freedom House. 2017. ``Transnistria.'' \textit{Freedom in the World 2017}. \verb!freedomhouse.org/report/freedom-world/2017/transnistria! (accessed on 13 March, 2019).
+\bibitem{} Freedom House. 2018. ``South Ossetia.'' \textit{Freedom in the World 2018}. \verb!freedomhouse.org/report/freedom-world/2018/south-ossetia! (accessed on 15 March, 2019).
+\bibitem{} GADM. 2018. ``GADM Maps and Data (version 3.6).'' \verb!gadm.org! (accessed February 7, 2019).
 \bibitem{} Goldblatt, Ran, Kilian Heilmann, and Yonatan Vaizman. 2018. ``Can Medium-Resolution Satellite Imagery Measure Economic Activity at Small Geographies? Evidence from Landsat in Vietnam.'' \textit{World Bank Economic Review}, forthcoming.
-\bibitem{} Henderson, J. Vernon, Adam Storeygard, and David N. Weil. 2012. ``Measuring Economic Growth from Outer Space.'' \textit{American Economic Review}, 102(2): 994-1028.
-\bibitem{} Hodler, Roland, and Paul A. Raschky. 2014. ``Regional Favoritism.'' \textit{Quarterly Journal of Economics}, 129(2): 995-1033.
+\bibitem{} Henderson, J. Vernon, Adam Storeygard, and David N. Weil. 2012. ``Measuring Economic Growth from Outer Space.'' \textit{American Economic Review}, 102(2): 994--1028.
+\bibitem{} Hewitt, B.G. 1993. ``Abkhazia: A Problem of Identity and Ownership.'' \textit{Central Asian Survey}, 12(3): 267--323.
+\bibitem{} Hirose, Yoko. 2014. \textit{The Unrecognized States in the World without Hegemony}, Tokyo: NHK Publication (in Japanese). 
+\bibitem{} Hodler, Roland, and Paul A. Raschky. 2014. ``Regional Favoritism.'' \textit{Quarterly Journal of Economics}, 129(2): 995--1033.
+\bibitem{} International Alert. 2004. \textit{From War Economies to Peace Economies in the South Caucasus}. International Alert.
+\bibitem{} International Crisis Group. 2004. ``Georgia: Avoiding War in South Ossetia.'' ICG Europe Report, no.\ 159.
+\bibitem{} International Crisis Group. 2005. ``Nagorno-Karabakh: Viewing the Conflict from the Ground.'' Crisis Group Europe Report, no.\ 166.
+\bibitem{} International Crisis Group. 2010. ``Abkhazia: Deepening Dependence.'' Crisis Group Europe Report, no.\ 202. 
+\bibitem{} International Institute for Strategic Studies. 2000. ``NATO and Non-NATO Europe.'' \textit{Military Balances}, 100: 35--108.
+\bibitem{} King, Charles. 2000. \textit{The Moldovans : Romania, Russia, and the Politics of Culture}. Hoover Institution Press.
+\bibitem{} King, Charles. 2001. ``The Benefits of Ethnic War: Understanding Eurasia?s Unrecognized States.'' \textit{World Politics}, 53(04): 524--552.
+\bibitem{} Kolsto, Pal. 2006. ``The Sustainability and Future of Unrecognized Quasi-States.'' \textit{Journal of Peace Research}, 43(6): 723--740.
+\bibitem{} Kolsto, Pal, and Helge Blakkisrud. 2012. ``De Facto States and Democracy: The Case of Nagorno-Karabakh.'' \textit{Communist and Post-Communist Studies}, 45(1--2): 141--151.
+\bibitem{} Lakoba, Stanislav. 1995. ``Abkhazia Is Abkhazia.'' \textit{Central Asian Survey}, 14(1): 97--105.
+\bibitem{} Lee, Yong Suk. 2018. ``International Isolation and Regional Inequality: Evidence from Sanctions on North Korea.'' \textit{Journal of Urban Economics}, 103: 34--51.
+\bibitem{} Lynch, Dov. 2002. ``Separatist States and Post-Soviet Conflicts.'' \textit{International Affairs}, 78(4): 831--848.
 \bibitem{} Mellander, Charlotta, Jose Lobo, Kevin Stolarick, and Zara Matheson. 2015. ``Night-Time Light Data: A Good Proxy Measure for Economic Activity?'' \textit{PloS one}, 10(10), e0139779.
-\bibitem{} National Geophysical Data Center. 2015. ``Version 4 DMSP-OLS Nighttime Lights Time Series.'' National Oceanic and Atmospheric Administration. https://ngdc.noaa.gov/eog/dmsp/downloadV4composites.html (accessed February 6, 2019).
+\bibitem{} Michalopoulos, Stelios, and Elias Papaioannou. 2013. ``Pre-Colonial Ethnic Institutions and Contemporary African Development.'' \textit{Econometrica}, 81(1): 113--152.
+\bibitem{} Michalopoulos, Stelios, and Elias Papaioannou. 2014. ``National Institutions and Subnational Development in Africa.'' \textit{Quarterly Journal of Economics}, 129(1): 151--213.
+\bibitem{} Minorities At Risk. 2006a. ``Assessment for Abkhazians in Georgia.'' \verb!www.mar.umd.edu/assessment.asp?groupId=37201! (accessed on 5 June, 2017).
+\bibitem{} Minorities At Risk. 2006b. ``Assessment for Ossetians (South) in Georgia.'' \verb!www.mar.umd.edu/assessment.asp?groupId=37203!  (accessed on 6 June, 2017)
+\bibitem{} Minorities At Risk. 2006c. ``Assessment for Slavs in Moldova.'' \verb!www.mar.umd.edu/assessment.asp?groupId=35902! (accessed on 7 June, 2017).
+\bibitem{} Mueller, Hannes. 2012. ``Growth Dynamics: The Myth of Economic Recovery: Comment.'' \textit{American Economic Review}, 102(7): 3774--3777.
+\bibitem{} National Geophysical Data Center. 2015. ``Version 4 DMSP-OLS Nighttime Lights Time Series.'' National Oceanic and Atmospheric Administration. \verb!ngdc.noaa.gov/eog/dmsp/downloadV4composites.html! (accessed February 6, 2019).
+\bibitem{} National Scientific and Applied Center for Preventive Medicine. 2006. \textit{Moldova Demographic and Health Survey 2005}. Calverton, Maryland: ORC Macro.
+\bibitem{} O'Loughlin, John, Gerard Toal, and Rebecca Chamberlain?Creanga. 2013. ``Divided Space, Divided Attitudes? Comparing the Republics of Moldova and Pridnestrovie (Transnistria) Using Simultaneous Surveys.'' \textit{Eurasian Geography and Economics}, 54(2): 227--258.
+\bibitem{} O'Loughlin, John, Vladimir Kolossov, and Gerard Toal. 2014. ``Inside the Post-Soviet de Facto States: A Comparison of Attitudes in Abkhazia, Nagorny Karabakh, South Ossetia, and Transnistria.'' \textit{Eurasian Geography and Economics}, 55(5): 423--456.
+\bibitem{} Pegg, Scott. 1998. \textit{International Society and the de Facto State}. Farnham: Ashgate.
 \bibitem{} Pinkovskiy, Maxim, and Xavier Sala-i-Martin. 2016. ``Newer Need Not be Better: Evaluating the Penn World Tables and the World Development Indicators Using Nighttime Lights.''. NBER Working Paper, 22216.
-\bibitem{} Storeygard, Adam. 2016. ``Farther on down the Road: Transport Costs, Trade and Urban Growth in Sub-Saharan Africa.'' \textit{The Review of Economic Studies}, 83(3): 1263-1295.
-\bibitem{} World Bank. 2018. \textit{World Development Indicators}. http://wdi.worldbank.org (accessed February 27, 2019).
+\bibitem{} Ryngaert, Cedric, and Sven Sobrie. 2011. ``Recognition of States: International Law or Realpolitik? The Practice of Recognition in the Wake of Kosovo, South Ossetia, and Abkhazia.'' \textit{Leiden Journal of International Law}, 24(2): 467--490.
+\bibitem{} Schwirtz, Michael. 2008. ``Abkhazia Wrests Gorge from Preoccupied Georgia.'' \textit{New York Times}, August 17, 2008.
+\bibitem{} Smolnik, Franziska. 2016. \textit{Secessionist Rule : Protracted Conflict and Configurations of Non-State Authority}. Frankfurt: Campus Verlag
+\bibitem{} Storeygard, Adam. 2016. ``Farther on down the Road: Transport Costs, Trade and Urban Growth in Sub-Saharan Africa.'' \textit{The Review of Economic Studies}, 83(3): 1263--1295.
+\bibitem{} Tchepalyga, A. L.\ 1997. \textit{Atlas of Dniester Moldavian Republic}. Tiraspol: Dniester State Corporative T.G.\ Shevchenko University.
+\bibitem{} Toal, Gerard. 2008. ``Russia?s Kosovo: A Critical Geopolitics of the August 2008 War over South Ossetia.'' \textit{Eurasian Geography and Economics}, 49(6): 670--705.
+\bibitem{} Toal, Gerard, and John O?Loughlin. 2017. ``Frozen Fragments, Simmering Spaces: The Post-Soviet De Facto States.'' in Holland, Edward C., and Matthew Derrick (Eds.), \textit{Questioning Post-Soviet}. Washington DC: Woodrow Wilson Press, pp. 103--125.
+\bibitem{} Tsutsiev, Arthur. 2014. \textit{Atlas of the Ethno-political History of the Caucasus}. New Haven: Yale University Press.
+\bibitem{} Witmer, Frank D.W., and John O?Loughlin. 2011. ``Detecting the Effects of Wars in the Caucasus Regions of Russia and Georgia Using Radiometrically Normalized DMSP-OLS Nighttime Lights Imagery.'' \textit{GIScience \& Remote Sensing}, 48(4): 478--500.
+\bibitem{} World Bank. 2006. ``Country Partnership Strategy FY07--10 for Republic of Azerbaijan.'' South Caucasus Country Management Unit, the World Bank.
+\bibitem{} World Bank. 2018. \textit{World Development Indicators}. \verb!wdi.worldbank.org! (accessed February 27, 2019).
 \end{thebibliography}
+
+\clearpage
+
+\begin{figure}[ptb]
+\caption{Unrecognized States in the Former Soviet Union}
+\includegraphics[width=\linewidth]{map.png}
+\label{map}%
+{\scriptsize \textbf{Notes}: 
+	The data sources are GADM (2018) for international boundaries and for Transnistria; ACASIAN (2014) for Abkhazia and South Ossetia; and Armenian Ministry of Foreign Affairs (2018) for Nagorno-Karabakh. WGS 1984 is used as the coordinate system to draw the map.
+}
+\end{figure}
+
+\begin{figure}[ptb]
+\caption{Actual and Predicted Annual Real GDP Growth in Azerbaijan}
+\includegraphics[width=\linewidth]{../a_output/plot_growth_hat_AZE.png}
+\label{aze}%
+{\scriptsize \textbf{Notes}: 
+	The data source for the actual annual real GDP growth is the Penn World Table (version 9.0). 
+	The predicted annual real GDP growth is based on nighttime light intensity within Azerbaijan proper, excluding the territory occupied by Nagorno-Karabakh's authority. 
+}
+\end{figure}
+
+\begin{figure}[ptb]
+\caption{Actual and Predicted Annual Real GDP Growth in Georgia}
+\includegraphics[width=\linewidth]{../a_output/plot_growth_hat_GEO.png}
+\label{geo}%
+{\scriptsize \textbf{Notes}: 
+	The data source for the actual annual real GDP growth is the Penn World Table (version 9.0). 
+	The predicted annual real GDP growth is based on nighttime light intensity within Georgia proper, excluding the Soviet-era territories of Abkhazia and South Ossetia. 
+}
+\end{figure}
+
+\begin{figure}[ptb]
+\caption{Actual and Predicted Annual Real GDP Growth in Moldova}
+\includegraphics[width=\linewidth]{../a_output/plot_growth_hat_MDA.png}
+\label{mda}%
+{\scriptsize \textbf{Notes}: 
+	The data source for the actual annual real GDP growth is the Penn World Table (version 9.0). 
+	The predicted annual real GDP growth is based on nighttime light intensity within Moldova proper, excluding the Soviet-era territory of Transnistria. 
+	The actual growth in 1993 is very close to zero, rather than being missing in the data source.
+}
+\end{figure}
+
+\begin{figure}[ptb]
+\caption{Predicted Annual Real GDP Growth in Nagorno-Karabakh and Azerbaijan}
+\includegraphics[width=\linewidth]{../a_output/plot_growth_hat_NKR.png}
+\label{nkr}%
+{\scriptsize \textbf{Notes}: 
+	The predicted annual real GDP growth for Nagorno-Karabakh is due to the author's calculation (see the text for detail).
+	The corresponding data for Azerbaijan is the same as in Figure \ref{aze}.
+}
+\end{figure}
+
+\begin{figure}[ptb]
+\caption{Predicted Annual Real GDP Growth in Abkhazia and Georgia}
+\includegraphics[width=\linewidth]{../a_output/plot_growth_hat_ABK.png}
+\label{abk}%
+{\scriptsize \textbf{Notes}: 
+	The predicted annual real GDP growth for Abkhazia is due to the author's calculation (see the text for detail).
+	The corresponding data for Georgia is the same as in Figure \ref{geo}.
+}
+\end{figure}
+
+\begin{figure}[ptb]
+\caption{Predicted Annual Real GDP Growth in South Ossetia and Georgia}
+\includegraphics[width=\linewidth]{../a_output/plot_growth_hat_SOS.png}
+\label{sos}%
+{\scriptsize \textbf{Notes}: 
+	The predicted annual real GDP growth for South Ossetia is due to the author's calculation (see the text for detail).
+	The corresponding data for Georgia is the same as in Figure \ref{geo}.
+}
+\end{figure}
+
+\begin{figure}[ptb]
+\caption{Predicted Annual Real GDP Growth in Transnistria and Moldova}
+\includegraphics[width=\linewidth]{../a_output/plot_growth_hat_TRA.png}
+\label{tra}%
+{\scriptsize \textbf{Notes}: 
+	The predicted annual real GDP growth for Transnistria is due to the author's calculation (see the text for detail).
+	The corresponding data for Moldova is the same as in Figure \ref{mda}.
+}
+\end{figure}
+
+\begin{table}[ptb]
+\caption{Estimated coefficients on mean light intensity and year dummies}%
+\label{estimates}%
+\input{income_light_cfe_yfe_result_revised.tex}\\
+{\scriptsize \textbf{Notes}: 
+	Estimated coefficients from equation (\ref{gdp}) are reported with standard errors clustered at the country and year levels in parentheses. *** indicates statistically significant at the 1\% level; ** 5\%.
+}
+\end{table}
 
 \end{document}
