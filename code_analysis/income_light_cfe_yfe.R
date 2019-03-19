@@ -46,17 +46,6 @@ data4analysis <- mutate(final_panel,
 # run OLS of ln_income on ln_light, cdum, ydum
 reg <- felm(ln_income ~ ln_light + factor(countrycode) + factor(year) -1 | 0 | 0 | countrycode + year, data4analysis)
 
-# show results
-#  "factor(year)1993", "factor(year)1994", "factor(year)1995", "factor(year)1996", "factor(year)1997", "factor(year)1998", "factor(year)1999", 
-#"factor(year)2000", "factor(year)2001", "factor(year)2002", "factor(year)2003", "factor(year)2004", "factor(year)2005", "factor(year)2006", "factor(year)2007", "factor(year)2008", "factor(year)2009", 
-#"factor(year)2010", "factor(year)2011", "factor(year)2012", "factor(year)2013"
-stargazer(
-          reg[c("ln_light")],
-          type = "text",
-          keep.stat = c("adj.rsq"),
-          table.layout = "-dc-ts-a="
-)
-
 # create tex file of regression results
 stargazer(
   reg,
