@@ -326,54 +326,56 @@ It is therefore an empirical question whether being unrecognized as a sovereign 
 This section describes the datasets we use to recover economic growth rates in the four unrecognized states from satellite images of nighttime light.
 \subsection{Real GDP}
 We use the Penn World Table 9.0 (Feenstra et al.\ 2015) as the data source for real GDP. 
-Expenditure-side real GDP at chained PPPs in 2011 US dollars (the variable \textit{rgdpe}) is used because the variable is meant for comparing ``living standards across countries and across years'' (Feenstra et al.\ 2015:\ Table 1).
+Expenditure-side real GDP at chained PPPs in 2011 US dollars (the variable \textit{rgdpe}) is used because this variable is meant for comparing ``living standards across countries and across years'' (Feenstra et al.\ 2015:\ Table 1).
 
 % Comparison to WDI
 An alternative data source for real GDP is World Development Indicators (World Bank 2018). 
-We prefer the Penn World Table, however, because since version 8 it makes real GDP cross-sectionally comparable in multiple years. 
-The cross-sectional comparability in the World Development Indicators is only ensured for the latest international price survey year (2010 for the latest version); the farther away from this reference year, the less comparable its data on real GDP across countries (see Pinkovskiy and Sala-i-Martin 2016, sections 2.1--2.2, for detail).
-As we exploit the variation in nighttime light not only within each country but also within each year, cross-sectional comparability is important.
+However, we prefer the Penn World Table in which real GDP is cross-sectionally comparable in multiple years (since version 8). 
+The cross-sectional comparability in the World Development Indicators is only ensured for the latest international price survey year (2010 for the latest version): the farther away from this reference year, the less comparable its data on real GDP across countries (see Pinkovskiy and Sala-i-Martin 2016: Sections 2.1--2.2).
+As we exploit the variation in nighttime light not only within each country but also within each year, cross-sectional comparability is important for our purpose.
 
 \subsection{Nighttime light}
 The data source for nighttime light is the DMSP-OLS Nighttime Lights Time Series, Version 4 (National Geophysical Data Center 2015). 
-It provides annual panel data (1992--2013) of nighttime light intensity at the 30 arc-second cells across the world. 
+It provides annual panel data of nighttime light intensity at the 30 arc-second cells across the world for 1992--2013. 
 The value of light intensity ranges from 0 to 63, which is not comparable across years due to the aging and replacement of satellite sensors. 
 See Henderson et al.\ (2012) among others for more detail about the dataset.
 
-Following Hodler and Raschky (2014), who aggregate light data into the sub-national level, we take the average of all the cell-level values within each country/territory as a measure of light intensity at the country/territory level.
+Following Hodler and Raschky (2014), who aggregate the light data into the sub-national region level, we take the average of all the cell-level values within each country/territory as a measure of light intensity at the country/territory level.
 
 % Validation
 Many studies validate light intensity against the measures of living standards.%
 \footnote{See Mellander et al.\ (2015), Bickenbach et al.\ (2016), and Goldblatt et al.\ (2018) for recent validation exercises at the sub-national level.} 
 For validation against real GDP at the country level, Henderson et al.\ (2012) and Storeygard (2016:\ Table 1) show that the elasticity of real GDP with respect to light is around 0.3 across different subsamples of countries. 
-In the estimation of elasticity, they control for country and year fixed effects, the latter of which take into account that the value of light intensity is not comparable across years.
+In the estimation of elasticity, they control for country and year fixed effects, the latter of which takes into account the aforementioned lack of comparability of the values of light intensity across years.
 
 \subsection{Country boundaries}
 To aggregate nighttime light intensity at the 30 arc-second cell level into the country level, we need the spatial data on country boundaries. 
 We use GADM (2018), following Alesina et al.\ (2016) and Dreher et al.\ (2015) among others. 
-The data include 256 countries and overseas territories. 
+The dataset includes 256 countries and overseas territories. 
 One country, Vatican, is dropped from the sample because it is smaller than the 30 arc-second cell. 
-In addition, 75 countries and territories are also dropped from the sample as real GDP data is unavailable for all years from 1992 to 2013, the sample period of nighttime light data.
-Excluding the three parent states of unrecognized states (Azerbaijan, Georgia, and Moldova), our base sample thus consists of 177 countries/territories in total.
+In addition, 75 countries and territories are also dropped from the sample as real GDP data is not available for all years during the sample period of nighttime light data.
+Excluding the three parent states of unrecognized states (i.e.\ Azerbaijan, Georgia, and Moldova), our sample thus consists of 177 countries/territories in total.
 
-\subsection{Boundaries for unrecognized states}
-To recover economic growth rates in unrecognized states, we also need to aggregate nighttime light data into the level of these breakaway territories. The spatial data sources for the boundaries of unrecognized states differ by each. Figure \ref{map} shows these boundary data.
+\subsection{Boundaries for unrecognized states}\label{boundaries}
+To recover economic growth rates in unrecognized states, we also need to aggregate nighttime light data into the level of these breakaway territories. 
+The spatial data sources for the boundaries of unrecognized states differ by their parent state, as described below. 
+Figure \ref{map} shows these boundary data.
 \paragraph{Nagorno-Karabakh and Azerbaijan proper}
 The data on the internationally recognized boundary of Azerbaijan (which includes the western and southern boundaries of Nagorno-Karabakh) is obtained from ACASIAN (2014). This dataset was created in conjunction with the Institute of Geography at Russian Academy of Sciences, with the official map definitive as of the 1989 Soviet Census. 
 
-The data on the 1994 ceasefire line that separates Nagorno-Karabakh from Azerbaijan proper comes from the map of Nagorno-Karabakh provided by the Armenian Ministry of Foreign Affairs (2018), digitized for this study.%
+The data on the 1994 ceasefire line that separates Nagorno-Karabakh from Azerbaijan proper comes from Armenian Ministry of Foreign Affairs (2018). The map of Nagorno-Karabakh in the PDF format is converted in GIS data for this study.%
 \footnote{
 	The data, together with the digitization protocol and the replication code, is available at a GitHub repository: \verb!github.com/mkudamatsu/data_karabakh-map!
 }
 
-The 1994 ceasefire line acts as the boundary of effectively controlled areas of Nagorno-Karabakh until today. Consequently, the data used in this study correctly delineates Nagorno-Karabakh to the extent of accuracy in the original map and the digitization process.
+The 1994 ceasefire line acts as the boundary of effectively controlled areas of Nagorno-Karabakh until today. Consequently, the data used in this study correctly delineates Nagorno-Karabakh to the extent of accuracy in the original map and the data conversion process.
 
 \paragraph{Abkhazia, South Ossetia and Georgia proper}  
 The spatial data on the boundaries of Abkhazia, South Ossetia, and Georgia proper is also obtained from ACASIAN (2014).%
 \footnote{
-	We do not use GADM (2018) because South Ossetia does not exist in the official subdivisions of Georgia today.
+	We do not use GADM (2018) because South Ossetia does not exist in the official administrative subdivisions of Georgia today.
 	} 
-
+These boundaries trace the Soviet-era boundaries of Abkhazia and South Ossetia.
 
 The Soviet-era boundaries accurately delineate the territories controlled by Abkhazia and South Ossetia after 2008 only, however. As a result of the wars of secession in 1991--1992, the north-east of Abkhazia (Upper Kodor Gorge) was under the control of Georgia proper (Tsutsiev 2014:\ Map 43). 
 For South Ossetia, villages with Georgian residents were under the control of Georgia proper (Tsutsiev 2014:\ Map 42). 
