@@ -1,5 +1,5 @@
 This GitHub repository replicates the data analysis in 
-> Masayuki Kudamatsu. 2019. "Observing Economic Growth in Unrecognized States with Nighttime Light." OSIPP Discussion Paper, no. xxxx
+> Masayuki Kudamatsu. 2019. "Observing Economic Growth in Unrecognized States with Nighttime Light." OSIPP Discussion Paper, DP-2019-E-002.
 
 which estimates economic growth rates in Nagorno-Karabakh, Abkhazia, South Ossetia, and Transnistria from the satellite images of nighttime light.
 
