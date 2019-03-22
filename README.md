@@ -11,11 +11,11 @@ Install the following applications:
 - R and R Studio (either on MacOS or Windows)
 
 Clone this GitHub repository
-- If you don't know how, I recommend using GitKraken. Follow [this instruction](https://support.gitkraken.com/working-with-repositories/open-clone-init/) to clone this repository with the URL: `https://github.com/mkudamatsu/unrecognized_states.git`
-- This will download a directory in your computer. Take note of the directory path. It should end with `/unrecognized_states`.
+- If you don't know how, I recommend using GitKraken. Follow [this instruction](https://support.gitkraken.com/working-with-repositories/open-clone-init/) to clone this repository with the URL: `https://github.com/mkudamatsu/unrecognized-states.git`
+- This will download a directory in your computer. Take note of the directory path. It should end with `/unrecognized-states`.
 
 Set the default directory in R Studio
-- Follow [the instruction in this GitHub issue](https://github.com/mkudamatsu/unrecognized_states/issues/21) to set the `/unrecognized_states` as the default directory.
+- Set the `/unrecognized-states` as the default directory.
 - Otherwise, R scripts won't be run because the file paths are set relative to the root directory of this repository.
 
 # Preparing input datasets
