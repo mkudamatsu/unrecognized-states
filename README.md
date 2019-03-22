@@ -10,9 +10,9 @@ Install the following applications:
 - ArcGIS Desktop Advanced and its Spatial Analyst extension (on Windows) which comes with Python 2.7
 - R and R Studio (either on MacOS or Windows)
 
-Clone this GitHub repository
-- If you don't know how, I recommend using GitKraken. Follow [this instruction](https://support.gitkraken.com/working-with-repositories/open-clone-init/) to clone this repository with the URL: `https://github.com/mkudamatsu/unrecognized-states.git`
-- This will download a directory in your computer. Take note of the directory path. It should end with `/unrecognized-states`.
+Clone/download this GitHub repository
+- If you're familiar with Git, clone this repository to download scripts and data files for replication
+- Otherwise, click the green button "Clone or Download" above right to download the zip file. Unzip it, and you'll have a directory called `/unrecognized-states-master`. Rename it to `/unrecognized-states`.
 
 Set the default directory in R Studio
 - Set the `/unrecognized-states` as the default directory.
